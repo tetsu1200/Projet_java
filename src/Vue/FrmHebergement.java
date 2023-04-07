@@ -4,17 +4,58 @@
  */
 package Vue;
 
+import Model.PhotoAccueil;
+import Model.PhotoAccueilDao;
+import static java.awt.Frame.MAXIMIZED_BOTH;
+import java.awt.Image;
+import java.beans.PropertyVetoException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.ImageIcon;
+
 /**
  *
  * @author PROBOOK 450 I7
  */
 public class FrmHebergement extends javax.swing.JInternalFrame {
 
+    ImageIcon photo;
+    PhotoAccueil ph = new PhotoAccueil();
+    PhotoAccueilDao phd = new PhotoAccueilDao();
+    
+    
+    
+    
     /**
      * Creates new form NewJInternalFrame
      */
     public FrmHebergement() {
         initComponents();
+        
+        try {
+            this.setMaximum(true);
+            //this.setExtendedState(MAXIMIZED_BOTH);
+        } catch (PropertyVetoException ex) {
+            Logger.getLogger(FrmHebergement.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        charger();
+    }
+    
+    
+    public void charger()
+    {
+        
+        ph = phd.setPhotoInBD();
+        String chemin = ph.getImgPrincipale();
+        
+        System.out.println(ph.getImgPrincipale());
+        photo=new ImageIcon(chemin);
+        System.out.println(photo);
+        //redimentionnement de l'image en fonction de la zone d'affichage
+        photo=new ImageIcon(photo.getImage()
+                  .getScaledInstance(lblPrincipale.getWidth(), lblPrincipale.getHeight(), Image.SCALE_DEFAULT));
+        //affichage de l'image dans la zone 
+        lblPrincipale.setIcon(photo);
     }
 
     /**
@@ -27,22 +68,67 @@ public class FrmHebergement extends javax.swing.JInternalFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
+        jPanel2 = new javax.swing.JPanel();
+        lblPrincipale = new javax.swing.JLabel();
+        jPanel3 = new javax.swing.JPanel();
 
-        setBackground(new java.awt.Color(255, 255, 0));
+        setBackground(new java.awt.Color(255, 255, 255));
         setBorder(null);
         setMaximizable(true);
+        setInheritsPopupMenu(true);
+        setPreferredSize(new java.awt.Dimension(0, 0));
 
-        jPanel1.setBackground(new java.awt.Color(255, 255, 51));
+        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
+
+        jPanel2.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
+
+        lblPrincipale.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 5));
+        lblPrincipale.setPreferredSize(new java.awt.Dimension(576, 231));
+
+        jPanel3.setBackground(new java.awt.Color(153, 153, 153));
+
+        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
+        jPanel3.setLayout(jPanel3Layout);
+        jPanel3Layout.setHorizontalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
+        jPanel3Layout.setVerticalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 68, Short.MAX_VALUE)
+        );
+
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(lblPrincipale, javax.swing.GroupLayout.DEFAULT_SIZE, 575, Short.MAX_VALUE)
+        );
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addComponent(lblPrincipale, javax.swing.GroupLayout.PREFERRED_SIZE, 231, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 406, Short.MAX_VALUE)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(29, 29, 29)
+                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(400, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 286, Short.MAX_VALUE)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(20, 20, 20)
+                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(325, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -62,5 +148,8 @@ public class FrmHebergement extends javax.swing.JInternalFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel jPanel3;
+    private javax.swing.JLabel lblPrincipale;
     // End of variables declaration//GEN-END:variables
 }

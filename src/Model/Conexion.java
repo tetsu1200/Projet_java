@@ -18,12 +18,12 @@ public class Conexion {
         try 
         {
             Class.forName("com.mysql.cj.jdbc.Driver");
-            System.err.println("Driver ok!");
+            System.out.println("Driver ok!");
             String url ="jdbc:mysql://localhost:3306/bdbooking";
             String user  ="root";
             String password="root";
             con = DriverManager.getConnection(url,user,password);
-            System.err.println("Connection ok!");
+            System.out.println("Connection ok!");
             return con;      
         } 
         catch (Exception e) 

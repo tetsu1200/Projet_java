@@ -40,11 +40,9 @@
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" attributes="0">
               <EmptySpace max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="jPanel2" pref="717" max="32767" attributes="0"/>
-                  <Component id="dkp" pref="717" max="32767" attributes="0"/>
-              </Group>
+              <Component id="dkp" pref="735" max="32767" attributes="0"/>
           </Group>
+          <Component id="jPanel2" pref="741" max="32767" attributes="0"/>
       </Group>
     </DimensionLayout>
   </Layout>
@@ -93,7 +91,7 @@
                   <Component id="btnHeber" min="-2" pref="54" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
                   <Component id="btnReser" min="-2" pref="54" max="-2" attributes="0"/>
-                  <EmptySpace pref="187" max="32767" attributes="0"/>
+                  <EmptySpace pref="211" max="32767" attributes="0"/>
                   <Component id="btnParametre" min="-2" pref="54" max="-2" attributes="0"/>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Component id="btnLogOut" min="-2" pref="54" max="-2" attributes="0"/>
@@ -214,7 +212,7 @@
     <Container class="javax.swing.JDesktopPane" name="dkp">
       <Properties>
         <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-          <Color blue="0" green="0" red="0" type="rgb"/>
+          <Color blue="9d" green="42" red="57" type="rgb"/>
         </Property>
         <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
           <Dimension value="[10, 0]"/>

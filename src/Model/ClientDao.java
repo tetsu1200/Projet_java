@@ -4,12 +4,9 @@
  */
 package Model;
 
-import Model.Conexion;
 import java.sql.*;
-import Model.Client;
 import java.util.List;
 import java.util.ArrayList;
-import javax.swing.JOptionPane;
 
 /**
  *

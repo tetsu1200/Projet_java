@@ -123,14 +123,14 @@ public class FrmPrincipale extends javax.swing.JFrame {
                 .addComponent(btnHeber, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnReser, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 187, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 211, Short.MAX_VALUE)
                 .addComponent(btnParametre, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(btnLogOut, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
 
-        dkp.setBackground(new java.awt.Color(0, 0, 0));
+        dkp.setBackground(new java.awt.Color(87, 66, 157));
         dkp.setPreferredSize(new java.awt.Dimension(10, 0));
 
         javax.swing.GroupLayout dkpLayout = new javax.swing.GroupLayout(dkp);
@@ -157,9 +157,8 @@ public class FrmPrincipale extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, 717, Short.MAX_VALUE)
-                    .addComponent(dkp, javax.swing.GroupLayout.DEFAULT_SIZE, 717, Short.MAX_VALUE)))
+                .addComponent(dkp, javax.swing.GroupLayout.DEFAULT_SIZE, 735, Short.MAX_VALUE))
+            .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, 741, Short.MAX_VALUE)
         );
 
         pack();
@@ -170,13 +169,19 @@ public class FrmPrincipale extends javax.swing.JFrame {
         //int i = 0
         FrmHebergement f=new FrmHebergement();
        
-       dkp.add(f);
-       if (i == 0){ //Pour ouvrir une fois à la fois
-        f.setVisible(true);
-       i =1;
+       if (i == 0 && !f.isVisible())
+       { //Pour ouvrir une fois à la fois
+           
+           dkp.add(f);
+           
+           f.setVisible(true);
+           i =1;
        }
        if (!f.isVisible()){ //si la fenetre est fermée
-           i = 0;
+           i = 0; 
+           System.out.print("closed");
+    
+           
        }
 
     }//GEN-LAST:event_btnAcceuilActionPerformed
