@@ -49,50 +49,50 @@ public class FrmHebergement extends javax.swing.JInternalFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        tSituation = new javax.swing.JComboBox<>();
-        tSituation1 = new javax.swing.JComboBox<>();
-        txtTarif = new javax.swing.JTextField();
+        cVille = new javax.swing.JComboBox<>();
+        cAtegorieHeber = new javax.swing.JComboBox<>();
+        txtPrixInitial = new javax.swing.JTextField();
         btnRechercher = new javax.swing.JButton();
         lblTest = new javax.swing.JLabel();
         lblTestNom = new javax.swing.JLabel();
         lblTestAdresse = new javax.swing.JLabel();
-        txtTarif1 = new javax.swing.JTextField();
+        txtPrixFinal = new javax.swing.JTextField();
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
         jPanel1.setForeground(new java.awt.Color(87, 66, 157));
 
-        tSituation.setFont(new java.awt.Font("Calibri", 0, 18)); // NOI18N
-        tSituation.setForeground(new java.awt.Color(163, 96, 230));
-        tSituation.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        tSituation.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(87, 66, 157), 4));
+        cVille.setFont(new java.awt.Font("Calibri", 0, 18)); // NOI18N
+        cVille.setForeground(new java.awt.Color(163, 96, 230));
+        cVille.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "ville", "Item 2", "Item 3", "Item 4" }));
+        cVille.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(87, 66, 157), null));
 
-        tSituation1.setFont(new java.awt.Font("Calibri", 0, 18)); // NOI18N
-        tSituation1.setForeground(new java.awt.Color(163, 96, 230));
-        tSituation1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        tSituation1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(87, 66, 157), 4));
-        tSituation1.addActionListener(new java.awt.event.ActionListener() {
+        cAtegorieHeber.setFont(new java.awt.Font("Calibri", 0, 18)); // NOI18N
+        cAtegorieHeber.setForeground(new java.awt.Color(163, 96, 230));
+        cAtegorieHeber.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "categorieheber", "Item 2", "Item 3", "Item 4" }));
+        cAtegorieHeber.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(87, 66, 157), null));
+        cAtegorieHeber.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                tSituation1ActionPerformed(evt);
+                cAtegorieHeberActionPerformed(evt);
             }
         });
 
-        txtTarif.setFont(new java.awt.Font("Calibri", 0, 18)); // NOI18N
-        txtTarif.setForeground(new java.awt.Color(163, 96, 230));
-        txtTarif.setText("jTextField1");
-        txtTarif.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(87, 66, 157), 4));
+        txtPrixInitial.setFont(new java.awt.Font("Calibri", 0, 18)); // NOI18N
+        txtPrixInitial.setForeground(new java.awt.Color(163, 96, 230));
+        txtPrixInitial.setText("prixInitial");
+        txtPrixInitial.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(87, 66, 157), null));
 
         btnRechercher.setBackground(new java.awt.Color(51, 51, 255));
         btnRechercher.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         btnRechercher.setForeground(new java.awt.Color(255, 255, 255));
         btnRechercher.setText("Rechercher");
-        btnRechercher.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(87, 66, 157), 4));
+        btnRechercher.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(87, 66, 157), null));
         btnRechercher.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnRechercherActionPerformed(evt);
             }
         });
 
-        lblTest.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        lblTest.setBorder(javax.swing.BorderFactory.createLineBorder(null));
 
         lblTestNom.setBackground(new java.awt.Color(255, 255, 255));
         lblTestNom.setFont(new java.awt.Font("Segoe UI", 1, 20)); // NOI18N
@@ -102,10 +102,15 @@ public class FrmHebergement extends javax.swing.JInternalFrame {
         lblTestAdresse.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
         lblTestAdresse.setText("13 Rue dodo");
 
-        txtTarif1.setFont(new java.awt.Font("Calibri", 0, 18)); // NOI18N
-        txtTarif1.setForeground(new java.awt.Color(163, 96, 230));
-        txtTarif1.setText("jTextField1");
-        txtTarif1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(87, 66, 157), 4));
+        txtPrixFinal.setFont(new java.awt.Font("Calibri", 0, 18)); // NOI18N
+        txtPrixFinal.setForeground(new java.awt.Color(163, 96, 230));
+        txtPrixFinal.setText("prixFinal");
+        txtPrixFinal.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(87, 66, 157), null));
+        txtPrixFinal.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtPrixFinalActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -113,13 +118,13 @@ public class FrmHebergement extends javax.swing.JInternalFrame {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap(68, Short.MAX_VALUE)
-                .addComponent(tSituation, javax.swing.GroupLayout.PREFERRED_SIZE, 201, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(cVille, javax.swing.GroupLayout.PREFERRED_SIZE, 201, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(tSituation1, javax.swing.GroupLayout.PREFERRED_SIZE, 201, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(cAtegorieHeber, javax.swing.GroupLayout.PREFERRED_SIZE, 201, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(txtTarif, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(txtPrixInitial, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(txtTarif1, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(txtPrixFinal, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnRechercher)
                 .addGap(114, 114, 114))
@@ -148,10 +153,10 @@ public class FrmHebergement extends javax.swing.JInternalFrame {
                         .addGap(114, 114, 114))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(tSituation1, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(tSituation, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtTarif1, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtTarif, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(cAtegorieHeber, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(cVille, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtPrixFinal, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtPrixInitial, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
 
@@ -185,13 +190,13 @@ public class FrmHebergement extends javax.swing.JInternalFrame {
     
     
     
-    private void tSituation1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tSituation1ActionPerformed
+    private void cAtegorieHeberActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cAtegorieHeberActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_tSituation1ActionPerformed
+    }//GEN-LAST:event_cAtegorieHeberActionPerformed
 
     private void btnRechercherActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRechercherActionPerformed
         // TODO add your handling code here:
-        int tarif = Integer.parseInt(txtTarif.getText());
+        int tarif = Integer.parseInt(txtPrixInitial.getText());
         list = he.rechercherH(tarif);
         
         
@@ -208,16 +213,20 @@ public class FrmHebergement extends javax.swing.JInternalFrame {
         
     }//GEN-LAST:event_btnRechercherActionPerformed
 
+    private void txtPrixFinalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtPrixFinalActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtPrixFinalActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnRechercher;
+    private javax.swing.JComboBox<String> cAtegorieHeber;
+    private javax.swing.JComboBox<String> cVille;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JLabel lblTest;
     private javax.swing.JLabel lblTestAdresse;
     private javax.swing.JLabel lblTestNom;
-    private javax.swing.JComboBox<String> tSituation;
-    private javax.swing.JComboBox<String> tSituation1;
-    private javax.swing.JTextField txtTarif;
-    private javax.swing.JTextField txtTarif1;
+    private javax.swing.JTextField txtPrixFinal;
+    private javax.swing.JTextField txtPrixInitial;
     // End of variables declaration//GEN-END:variables
 }
