@@ -64,12 +64,13 @@ public class FrmHebergement extends javax.swing.JInternalFrame {
         cVille.setFont(new java.awt.Font("Calibri", 0, 18)); // NOI18N
         cVille.setForeground(new java.awt.Color(163, 96, 230));
         cVille.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "ville", "Item 2", "Item 3", "Item 4" }));
-        cVille.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(87, 66, 157), null));
+        cVille.setSelectedIndex(1);
+        cVille.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(87, 66, 157), 4));
 
         cAtegorieHeber.setFont(new java.awt.Font("Calibri", 0, 18)); // NOI18N
         cAtegorieHeber.setForeground(new java.awt.Color(163, 96, 230));
         cAtegorieHeber.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "categorieheber", "Item 2", "Item 3", "Item 4" }));
-        cAtegorieHeber.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(87, 66, 157), null));
+        cAtegorieHeber.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(87, 66, 157), 4));
         cAtegorieHeber.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cAtegorieHeberActionPerformed(evt);
@@ -79,20 +80,20 @@ public class FrmHebergement extends javax.swing.JInternalFrame {
         txtPrixInitial.setFont(new java.awt.Font("Calibri", 0, 18)); // NOI18N
         txtPrixInitial.setForeground(new java.awt.Color(163, 96, 230));
         txtPrixInitial.setText("prixInitial");
-        txtPrixInitial.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(87, 66, 157), null));
+        txtPrixInitial.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(87, 66, 157), 4));
 
         btnRechercher.setBackground(new java.awt.Color(51, 51, 255));
         btnRechercher.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         btnRechercher.setForeground(new java.awt.Color(255, 255, 255));
         btnRechercher.setText("Rechercher");
-        btnRechercher.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(87, 66, 157), null));
+        btnRechercher.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(87, 66, 157), 4));
         btnRechercher.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnRechercherActionPerformed(evt);
             }
         });
 
-        lblTest.setBorder(javax.swing.BorderFactory.createLineBorder(null));
+        lblTest.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
         lblTestNom.setBackground(new java.awt.Color(255, 255, 255));
         lblTestNom.setFont(new java.awt.Font("Segoe UI", 1, 20)); // NOI18N
@@ -105,7 +106,7 @@ public class FrmHebergement extends javax.swing.JInternalFrame {
         txtPrixFinal.setFont(new java.awt.Font("Calibri", 0, 18)); // NOI18N
         txtPrixFinal.setForeground(new java.awt.Color(163, 96, 230));
         txtPrixFinal.setText("prixFinal");
-        txtPrixFinal.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(87, 66, 157), null));
+        txtPrixFinal.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(87, 66, 157), 4));
         txtPrixFinal.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtPrixFinalActionPerformed(evt);

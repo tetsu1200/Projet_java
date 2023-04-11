@@ -241,7 +241,7 @@ public class FrmPrincipale extends javax.swing.JFrame {
     private javax.swing.JButton btnLogOut;
     private javax.swing.JButton btnParametre;
     private javax.swing.JButton btnReser;
-    private javax.swing.JDesktopPane dkp;
+    public javax.swing.JDesktopPane dkp;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel2;
