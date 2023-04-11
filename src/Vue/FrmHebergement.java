@@ -4,58 +4,39 @@
  */
 package Vue;
 
-import Model.PhotoAccueil;
-import Model.PhotoAccueilDao;
-import static java.awt.Frame.MAXIMIZED_BOTH;
+import Model.Hebergement;
 import java.awt.Image;
 import java.beans.PropertyVetoException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.ImageIcon;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 
 /**
  *
  * @author PROBOOK 450 I7
  */
 public class FrmHebergement extends javax.swing.JInternalFrame {
-
+    
     ImageIcon photo;
-    PhotoAccueil ph = new PhotoAccueil();
-    PhotoAccueilDao phd = new PhotoAccueilDao();
     
-    
-    
-    
+    Hebergement he = new Hebergement();
+    List<Hebergement> list = new ArrayList<>();
+
     /**
-     * Creates new form NewJInternalFrame
+     * Creates new form FrmHebergement
      */
     public FrmHebergement() {
         initComponents();
-        
         try {
             this.setMaximum(true);
             //this.setExtendedState(MAXIMIZED_BOTH);
         } catch (PropertyVetoException ex) {
-            Logger.getLogger(FrmHebergement.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(FrmAcceuil.class.getName()).log(Level.SEVERE, null, ex);
         }
-        charger();
-    }
-    
-    
-    public void charger()
-    {
-        
-        ph = phd.setPhotoInBD();
-        String chemin = ph.getImgPrincipale();
-        
-        System.out.println(ph.getImgPrincipale());
-        photo=new ImageIcon(chemin);
-        System.out.println(photo);
-        //redimentionnement de l'image en fonction de la zone d'affichage
-        photo=new ImageIcon(photo.getImage()
-                  .getScaledInstance(lblPrincipale.getWidth(), lblPrincipale.getHeight(), Image.SCALE_DEFAULT));
-        //affichage de l'image dans la zone 
-        lblPrincipale.setIcon(photo);
     }
 
     /**
@@ -68,67 +49,98 @@ public class FrmHebergement extends javax.swing.JInternalFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        jPanel2 = new javax.swing.JPanel();
-        lblPrincipale = new javax.swing.JLabel();
-        jPanel3 = new javax.swing.JPanel();
-
-        setBackground(new java.awt.Color(255, 255, 255));
-        setBorder(null);
-        setMaximizable(true);
-        setInheritsPopupMenu(true);
-        setPreferredSize(new java.awt.Dimension(0, 0));
+        tSituation = new javax.swing.JComboBox<>();
+        tSituation1 = new javax.swing.JComboBox<>();
+        txtTarif = new javax.swing.JTextField();
+        btnRechercher = new javax.swing.JButton();
+        lblTest = new javax.swing.JLabel();
+        lblTestNom = new javax.swing.JLabel();
+        lblTestAdresse = new javax.swing.JLabel();
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel1.setForeground(new java.awt.Color(87, 66, 157));
 
-        jPanel2.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
+        tSituation.setFont(new java.awt.Font("Calibri", 0, 18)); // NOI18N
+        tSituation.setForeground(new java.awt.Color(163, 96, 230));
+        tSituation.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        tSituation.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(87, 66, 157), 4));
 
-        lblPrincipale.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 5));
-        lblPrincipale.setPreferredSize(new java.awt.Dimension(576, 231));
+        tSituation1.setFont(new java.awt.Font("Calibri", 0, 18)); // NOI18N
+        tSituation1.setForeground(new java.awt.Color(163, 96, 230));
+        tSituation1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        tSituation1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(87, 66, 157), 4));
+        tSituation1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                tSituation1ActionPerformed(evt);
+            }
+        });
 
-        jPanel3.setBackground(new java.awt.Color(153, 153, 153));
+        txtTarif.setFont(new java.awt.Font("Calibri", 0, 18)); // NOI18N
+        txtTarif.setForeground(new java.awt.Color(163, 96, 230));
+        txtTarif.setText("jTextField1");
+        txtTarif.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(87, 66, 157), 4));
 
-        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
-        jPanel3.setLayout(jPanel3Layout);
-        jPanel3Layout.setHorizontalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
-        );
-        jPanel3Layout.setVerticalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 68, Short.MAX_VALUE)
-        );
+        btnRechercher.setBackground(new java.awt.Color(51, 51, 255));
+        btnRechercher.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        btnRechercher.setForeground(new java.awt.Color(255, 255, 255));
+        btnRechercher.setText("Rechercher");
+        btnRechercher.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(87, 66, 157), 4));
+        btnRechercher.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnRechercherActionPerformed(evt);
+            }
+        });
 
-        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
-        jPanel2.setLayout(jPanel2Layout);
-        jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(lblPrincipale, javax.swing.GroupLayout.DEFAULT_SIZE, 575, Short.MAX_VALUE)
-        );
-        jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addComponent(lblPrincipale, javax.swing.GroupLayout.PREFERRED_SIZE, 231, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
+        lblTest.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+
+        lblTestNom.setBackground(new java.awt.Color(255, 255, 255));
+        lblTestNom.setFont(new java.awt.Font("Segoe UI", 1, 20)); // NOI18N
+        lblTestNom.setText("Bonjour");
+
+        lblTestAdresse.setBackground(new java.awt.Color(255, 255, 255));
+        lblTestAdresse.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
+        lblTestAdresse.setText("13 Rue dodo");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap(81, Short.MAX_VALUE)
+                .addComponent(tSituation, javax.swing.GroupLayout.PREFERRED_SIZE, 201, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(tSituation1, javax.swing.GroupLayout.PREFERRED_SIZE, 201, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(txtTarif, javax.swing.GroupLayout.PREFERRED_SIZE, 201, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btnRechercher)
+                .addGap(114, 114, 114))
+            .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(29, 29, 29)
-                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(400, Short.MAX_VALUE))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addComponent(lblTestNom, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(lblTestAdresse, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(lblTest, javax.swing.GroupLayout.PREFERRED_SIZE, 209, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(20, 20, 20)
-                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(325, Short.MAX_VALUE))
+                .addGap(150, 150, 150)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(btnRechercher, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(tSituation1, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(tSituation, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(txtTarif, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(44, 44, 44)
+                .addComponent(lblTest, javax.swing.GroupLayout.DEFAULT_SIZE, 215, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(lblTestNom, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(lblTestAdresse)
+                .addGap(114, 114, 114))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -145,11 +157,54 @@ public class FrmHebergement extends javax.swing.JInternalFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    public void modP(int pos,int x, int y, JLabel lbl, JLabel lblNom,JLabel lblAdresse){
+        //list = he.topHebergement();
+        String chemin = list.get(pos).getPhoto();
+        photo=new ImageIcon(chemin);
+        //redimentionnement de l'image en fonction de la zone d'affichage
+        photo=new ImageIcon(photo.getImage().getScaledInstance(x,y, Image.SCALE_DEFAULT));
+        //affichage de l'image dans la zone 
+        lbl.setIcon(photo);
+        //affichage du nom dans la zone
+        lblNom.setText(list.get(pos).getNom());
+        //affichage de l'adresse dans la zone 
+        lblAdresse.setText(list.get(pos).getAdresse());
+    }
+    
+    
+    
+    private void tSituation1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tSituation1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_tSituation1ActionPerformed
+
+    private void btnRechercherActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRechercherActionPerformed
+        // TODO add your handling code here:
+        int tarif = Integer.parseInt(txtTarif.getText());
+        list = he.rechercherH(tarif);
+        
+        
+        try {
+            if (list != null) {
+                modP(0,209 ,215 , lblTest, lblTestNom, lblTestAdresse);
+            }else{
+                JOptionPane.showMessageDialog(this, "Logement introuvable","Message", JOptionPane.INFORMATION_MESSAGE);
+            }
+            
+        } catch (Exception e) {
+            e.getStackTrace();
+        }
+        
+    }//GEN-LAST:event_btnRechercherActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnRechercher;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel2;
-    private javax.swing.JPanel jPanel3;
-    private javax.swing.JLabel lblPrincipale;
+    private javax.swing.JLabel lblTest;
+    private javax.swing.JLabel lblTestAdresse;
+    private javax.swing.JLabel lblTestNom;
+    private javax.swing.JComboBox<String> tSituation;
+    private javax.swing.JComboBox<String> tSituation1;
+    private javax.swing.JTextField txtTarif;
     // End of variables declaration//GEN-END:variables
 }

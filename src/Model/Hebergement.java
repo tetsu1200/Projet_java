@@ -4,6 +4,9 @@
  */
 package Model;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  *
  * @author PROBOOK 450 I7
@@ -21,6 +24,8 @@ public class Hebergement {
     private String description;
     private String avis;
     private String categorie;
+    
+    private HebergementDao hed= new HebergementDao();
 
     public Hebergement() {
     }
@@ -104,6 +109,81 @@ public class Hebergement {
 
     public void setCategorie(String categorie) {
         this.categorie = categorie;
+    }
+    
+    
+    public List topHebergement(){
+        
+        List<Hebergement> list = new ArrayList<>();
+        
+        try {
+            list = hed.recuperer();
+            
+            if (!list.isEmpty()) {
+                
+                for (int i = 0; i < list.size()-1; i++) 
+                {
+                    for (int j = 0; j < list.size(); j++) 
+                    {
+
+                        if (list.get(i).nbrEtoile<list.get(j).nbrEtoile) 
+                        {
+                            Hebergement get = list.get(i);
+                            list.set(i, list.get(j));
+                            list.set(j, get);
+                        }
+
+                    }
+                }
+                
+            }
+            
+            
+        } catch (Exception e) {
+            e.getStackTrace();
+        }
+        
+        return list;
+        
+    }
+    
+    
+    public List rechercherH(int tarif){
+        
+        List<Hebergement> list = new ArrayList<>();
+        List<Hebergement> newList = new ArrayList<>();
+        int j = 0;
+        
+        
+        try {
+            list = hed.recuperer();
+            
+            if (!list.isEmpty()) {
+                
+                for (int i = 0; i < list.size(); i++) 
+                {
+
+                    if (list.get(i).tarif == tarif) 
+                    {
+                        newList.add(list.get(i));
+                        j++;
+                    }      
+                    System.out.println("Recherche"+newList.size());
+                }           
+                
+            }else{
+                newList = null;
+                System.out.println("list ok"+j);
+            }
+            
+            
+        } catch (Exception e) {
+            //e.getStackTrace();
+            e.printStackTrace();
+        }
+        
+        return newList;
+        
     }
     
     

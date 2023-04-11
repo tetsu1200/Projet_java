@@ -73,6 +73,11 @@ public class FrmPrincipale extends javax.swing.JFrame {
         btnHeber.setForeground(new java.awt.Color(255, 255, 255));
         btnHeber.setText("Hebergement");
         btnHeber.setBorder(null);
+        btnHeber.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnHeberActionPerformed(evt);
+            }
+        });
 
         btnReser.setBackground(new java.awt.Color(87, 66, 157));
         btnReser.setFont(new java.awt.Font("Square721 Cn BT", 0, 18)); // NOI18N
@@ -167,24 +172,33 @@ public class FrmPrincipale extends javax.swing.JFrame {
     private void btnAcceuilActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAcceuilActionPerformed
         // TODO add your handling code here:
         //int i = 0
-        FrmHebergement f=new FrmHebergement();
-       
-       if (i == 0 && !f.isVisible())
-       { //Pour ouvrir une fois à la fois
+        FrmAcceuil f=new FrmAcceuil();
+     
            
+           dkp.removeAll();
            dkp.add(f);
            
            f.setVisible(true);
            i =1;
-       }
-       if (!f.isVisible()){ //si la fenetre est fermée
-           i = 0; 
-           System.out.print("closed");
-    
-           
-       }
+       
+       
 
     }//GEN-LAST:event_btnAcceuilActionPerformed
+
+    private void btnHeberActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHeberActionPerformed
+        // TODO add your handling code here:
+        
+        FrmHebergement f=new FrmHebergement();
+  
+        dkp.removeAll();
+        dkp.add(f);
+        f.setVisible(true);
+        i =1;
+       
+    
+           
+       
+    }//GEN-LAST:event_btnHeberActionPerformed
 
     /**
      * @param args the command line arguments
