@@ -4,7 +4,10 @@
  */
 package Vue;
 
+import Model.Client;
+import Model.ClientDao;
 import Model.Hebergement;
+import Model.UserManager;
 import java.awt.Image;
 import java.beans.PropertyVetoException;
 import java.util.ArrayList;
@@ -14,6 +17,7 @@ import java.util.logging.Logger;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
+import javax.swing.SwingUtilities;
 
 /**
  *
@@ -24,6 +28,8 @@ public class FrmHebergement extends javax.swing.JInternalFrame {
     ImageIcon photo;
     
     Hebergement he = new Hebergement();
+    Client cl = new Client();
+    Login lg = new Login();
     List<Hebergement> list = new ArrayList<>();
 
     /**
@@ -38,6 +44,8 @@ public class FrmHebergement extends javax.swing.JInternalFrame {
             Logger.getLogger(FrmAcceuil.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
+    
+    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -53,10 +61,12 @@ public class FrmHebergement extends javax.swing.JInternalFrame {
         cAtegorieHeber = new javax.swing.JComboBox<>();
         txtPrixInitial = new javax.swing.JTextField();
         btnRechercher = new javax.swing.JButton();
-        lblTest = new javax.swing.JLabel();
-        lblTestNom = new javax.swing.JLabel();
-        lblTestAdresse = new javax.swing.JLabel();
         txtPrixFinal = new javax.swing.JTextField();
+        jDateChooser1 = new com.toedter.calendar.JDateChooser();
+        jDateChooser2 = new com.toedter.calendar.JDateChooser();
+        jPanel2 = new javax.swing.JPanel();
+        lblNom = new javax.swing.JLabel();
+        lblPhoto = new javax.swing.JLabel();
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
         jPanel1.setForeground(new java.awt.Color(87, 66, 157));
@@ -93,16 +103,6 @@ public class FrmHebergement extends javax.swing.JInternalFrame {
             }
         });
 
-        lblTest.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-
-        lblTestNom.setBackground(new java.awt.Color(255, 255, 255));
-        lblTestNom.setFont(new java.awt.Font("Segoe UI", 1, 20)); // NOI18N
-        lblTestNom.setText("Bonjour");
-
-        lblTestAdresse.setBackground(new java.awt.Color(255, 255, 255));
-        lblTestAdresse.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
-        lblTestAdresse.setText("13 Rue dodo");
-
         txtPrixFinal.setFont(new java.awt.Font("Calibri", 0, 18)); // NOI18N
         txtPrixFinal.setForeground(new java.awt.Color(163, 96, 230));
         txtPrixFinal.setText("prixFinal");
@@ -113,52 +113,80 @@ public class FrmHebergement extends javax.swing.JInternalFrame {
             }
         });
 
+        jDateChooser1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(87, 66, 157), 4));
+        jDateChooser1.setToolTipText("");
+
+        jDateChooser2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(87, 66, 157), 4));
+
+        lblNom.setFont(new java.awt.Font("Calibri", 0, 18)); // NOI18N
+        lblNom.setText("Nom");
+
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(lblNom, javax.swing.GroupLayout.DEFAULT_SIZE, 175, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(lblNom, javax.swing.GroupLayout.DEFAULT_SIZE, 56, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap(68, Short.MAX_VALUE)
+                .addGap(75, 75, 75)
                 .addComponent(cVille, javax.swing.GroupLayout.PREFERRED_SIZE, 201, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(cAtegorieHeber, javax.swing.GroupLayout.PREFERRED_SIZE, 201, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(txtPrixInitial, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(txtPrixFinal, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btnRechercher)
-                .addGap(114, 114, 114))
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(29, 29, 29)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addComponent(lblTestNom, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(lblTestAdresse, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(lblTest, javax.swing.GroupLayout.PREFERRED_SIZE, 209, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(cAtegorieHeber, javax.swing.GroupLayout.PREFERRED_SIZE, 201, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(txtPrixInitial, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(txtPrixFinal, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btnRechercher))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jDateChooser1, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(37, 37, 37)
+                        .addComponent(jDateChooser2, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(107, 107, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(lblPhoto, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(150, 150, 150)
+                .addContainerGap()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(lblPhoto, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(84, 84, 84)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(btnRechercher, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(99, 99, 99)
-                        .addComponent(lblTest, javax.swing.GroupLayout.DEFAULT_SIZE, 160, Short.MAX_VALUE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(lblTestNom, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(lblTestAdresse)
-                        .addGap(114, 114, 114))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(cAtegorieHeber, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(cVille, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtPrixFinal, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtPrixInitial, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                    .addComponent(btnRechercher, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(cAtegorieHeber, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(cVille, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(txtPrixFinal, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(txtPrixInitial, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(32, 32, 32)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jDateChooser1, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jDateChooser2, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(320, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -175,18 +203,20 @@ public class FrmHebergement extends javax.swing.JInternalFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    public void modP(int pos,int x, int y, JLabel lbl, JLabel lblNom,JLabel lblAdresse){
-        //list = he.topHebergement();
-        String chemin = list.get(pos).getPhoto();
+    
+    public void profil(){
+        
+        cl = cl.clientActu(UserManager.getEmail(), UserManager.getPassword());
+        
+        String chemin = cl.getPhoto();
         photo=new ImageIcon(chemin);
         //redimentionnement de l'image en fonction de la zone d'affichage
-        photo=new ImageIcon(photo.getImage().getScaledInstance(x,y, Image.SCALE_DEFAULT));
+        photo=new ImageIcon(photo.getImage().getScaledInstance(77,77, Image.SCALE_DEFAULT));
         //affichage de l'image dans la zone 
-        lbl.setIcon(photo);
+        lblPhoto.setIcon(photo);
         //affichage du nom dans la zone
-        lblNom.setText(list.get(pos).getNom());
-        //affichage de l'adresse dans la zone 
-        lblAdresse.setText(list.get(pos).getAdresse());
+        lblNom.setText(cl.getNom());
+        
     }
     
     
@@ -196,21 +226,10 @@ public class FrmHebergement extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_cAtegorieHeberActionPerformed
 
     private void btnRechercherActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRechercherActionPerformed
-        // TODO add your handling code here:
-        int tarif = Integer.parseInt(txtPrixInitial.getText());
-        list = he.rechercherH(tarif);
-        
-        
-        try {
-            if (list != null) {
-                modP(0,209 ,215 , lblTest, lblTestNom, lblTestAdresse);
-            }else{
-                JOptionPane.showMessageDialog(this, "Logement introuvable","Message", JOptionPane.INFORMATION_MESSAGE);
-            }
-            
-        } catch (Exception e) {
-            e.getStackTrace();
-        }
+        //Pour recuperer le parent de FrmHebergement
+        FrmPrincipale frmPrincipale = (FrmPrincipale) SwingUtilities.getWindowAncestor(FrmHebergement.this);
+        //Supprimer FrmHebergement et afficher FrmHebergement2
+        frmPrincipale.goToFrmHebergementToHebergement2();
         
     }//GEN-LAST:event_btnRechercherActionPerformed
 
@@ -223,10 +242,12 @@ public class FrmHebergement extends javax.swing.JInternalFrame {
     private javax.swing.JButton btnRechercher;
     private javax.swing.JComboBox<String> cAtegorieHeber;
     private javax.swing.JComboBox<String> cVille;
+    private com.toedter.calendar.JDateChooser jDateChooser1;
+    private com.toedter.calendar.JDateChooser jDateChooser2;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JLabel lblTest;
-    private javax.swing.JLabel lblTestAdresse;
-    private javax.swing.JLabel lblTestNom;
+    private javax.swing.JPanel jPanel2;
+    private javax.swing.JLabel lblNom;
+    private javax.swing.JLabel lblPhoto;
     private javax.swing.JTextField txtPrixFinal;
     private javax.swing.JTextField txtPrixInitial;
     // End of variables declaration//GEN-END:variables

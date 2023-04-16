@@ -43,6 +43,7 @@ public class HebergementDao {
                 he.setNbrEtoile(rs.getInt("nbrEtoile"));
                 he.setNbrChambre(rs.getInt("nbrChambre"));
                 he.setTarif(rs.getInt("tarifHeber"));
+                he.setVille(rs.getString("ville"));
                 list.add(he);
      
             }

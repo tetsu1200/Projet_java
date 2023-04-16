@@ -8,6 +8,7 @@ import javax.swing.JOptionPane;
 import java.sql.*;
 import Model.Client;
 import Model.ClientDao;
+import Model.UserManager;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -254,6 +255,8 @@ public class Login extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    
+    
     private void btnGoToSignUpActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGoToSignUpActionPerformed
         // TODO add your handling code here:
        Login.super.dispose();
@@ -281,6 +284,8 @@ public class Login extends javax.swing.JFrame {
                 }else if (rs.next()) {
                     Login.super.dispose();
                     FrmPrincipale fp = new FrmPrincipale();
+                    UserManager.setEmail(mail);
+                    UserManager.setPassword(mdp);
                     fp.setVisible(true);
                     this.hide();
                 }

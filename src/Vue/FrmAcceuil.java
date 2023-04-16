@@ -4,7 +4,9 @@
  */
 package Vue;
 
+import Model.Client;
 import Model.Hebergement;
+import Model.UserManager;
 import static java.awt.Frame.MAXIMIZED_BOTH;
 import java.awt.Image;
 import java.beans.PropertyVetoException;
@@ -13,7 +15,10 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.ImageIcon;
+import javax.swing.JDesktopPane;
+import javax.swing.JInternalFrame;
 import javax.swing.JLabel;
+import javax.swing.SwingUtilities;
 
 /**
  *
@@ -23,6 +28,7 @@ public class FrmAcceuil extends javax.swing.JInternalFrame {
 
     ImageIcon photo;
     Hebergement he = new Hebergement();
+    Client cl = new Client();
     private List<Hebergement> list = new ArrayList<>();
             
     
@@ -67,6 +73,21 @@ public class FrmAcceuil extends javax.swing.JInternalFrame {
         modP(2, 209, 215, lbl3, lbl3Nom, lbl3Adresse);
         
     }
+    
+    public void profil(){
+        
+        cl = cl.clientActu(UserManager.getEmail(), UserManager.getPassword());
+        
+        String chemin = cl.getPhoto();
+        photo=new ImageIcon(chemin);
+        //redimentionnement de l'image en fonction de la zone d'affichage
+        photo=new ImageIcon(photo.getImage().getScaledInstance(77,77, Image.SCALE_DEFAULT));
+        //affichage de l'image dans la zone 
+        lblPhoto.setIcon(photo);
+        //affichage du nom dans la zone
+        lblNom.setText(cl.getNom());
+        
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -87,6 +108,9 @@ public class FrmAcceuil extends javax.swing.JInternalFrame {
         lbl3Adresse = new javax.swing.JLabel();
         lbl3Nom = new javax.swing.JLabel();
         lbl3 = new javax.swing.JLabel();
+        jPanel2 = new javax.swing.JPanel();
+        lblNom = new javax.swing.JLabel();
+        lblPhoto = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(255, 255, 255));
         setBorder(null);
@@ -100,6 +124,11 @@ public class FrmAcceuil extends javax.swing.JInternalFrame {
         lblPrincipale.setMaximumSize(new java.awt.Dimension(191, 221));
         lblPrincipale.setMinimumSize(new java.awt.Dimension(191, 221));
         lblPrincipale.setPreferredSize(new java.awt.Dimension(191, 221));
+        lblPrincipale.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lblPrincipaleMouseClicked(evt);
+            }
+        });
 
         lblPrincipaleNom.setBackground(new java.awt.Color(255, 255, 255));
         lblPrincipaleNom.setFont(new java.awt.Font("Segoe UI", 1, 20)); // NOI18N
@@ -110,6 +139,11 @@ public class FrmAcceuil extends javax.swing.JInternalFrame {
         lblPrincipaleAdresse.setText("13 Rue dodo");
 
         lbl2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        lbl2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lbl2MouseClicked(evt);
+            }
+        });
 
         lbl2Nom.setBackground(new java.awt.Color(255, 255, 255));
         lbl2Nom.setFont(new java.awt.Font("Segoe UI", 1, 20)); // NOI18N
@@ -128,6 +162,31 @@ public class FrmAcceuil extends javax.swing.JInternalFrame {
         lbl3Nom.setText("Bonjour");
 
         lbl3.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        lbl3.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lbl3MouseClicked(evt);
+            }
+        });
+
+        lblNom.setFont(new java.awt.Font("Calibri", 0, 18)); // NOI18N
+        lblNom.setText("Nom");
+
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(lblNom, javax.swing.GroupLayout.DEFAULT_SIZE, 175, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(lblNom, javax.swing.GroupLayout.DEFAULT_SIZE, 56, Short.MAX_VALUE)
+                .addContainerGap())
+        );
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -136,10 +195,6 @@ public class FrmAcceuil extends javax.swing.JInternalFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(35, 35, 35)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addComponent(lblPrincipale, javax.swing.GroupLayout.DEFAULT_SIZE, 485, Short.MAX_VALUE)
-                        .addComponent(lblPrincipaleNom, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(lblPrincipaleAdresse, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
@@ -150,14 +205,28 @@ public class FrmAcceuil extends javax.swing.JInternalFrame {
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(lbl3Adresse, javax.swing.GroupLayout.PREFERRED_SIZE, 485, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(lbl3Nom, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(lbl3, javax.swing.GroupLayout.PREFERRED_SIZE, 209, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(122, Short.MAX_VALUE))
+                            .addComponent(lbl3, javax.swing.GroupLayout.PREFERRED_SIZE, 209, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addContainerGap(25, Short.MAX_VALUE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(lblPrincipale, javax.swing.GroupLayout.DEFAULT_SIZE, 485, Short.MAX_VALUE)
+                            .addComponent(lblPrincipaleNom, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(lblPrincipaleAdresse, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(lblPhoto, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE))))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(22, 22, 22)
-                .addComponent(lblPrincipale, javax.swing.GroupLayout.PREFERRED_SIZE, 294, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(22, 22, 22)
+                        .addComponent(lblPrincipale, javax.swing.GroupLayout.PREFERRED_SIZE, 294, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                        .addComponent(lblPhoto, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jPanel2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(lblPrincipaleNom, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -190,15 +259,64 @@ public class FrmAcceuil extends javax.swing.JInternalFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void lblPrincipaleMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblPrincipaleMouseClicked
+       
+        // Récupérer le JDesktopPane du JFrame parent (FrmPrincipale)
+        JDesktopPane desktopPane = (JDesktopPane) SwingUtilities.getAncestorOfClass(JDesktopPane.class, this);
+
+        // Récupérer le JInternalFrame parent (FrmHebergement2)
+        JInternalFrame internalFrame = (JInternalFrame) SwingUtilities.getAncestorOfClass(JInternalFrame.class, this);
+
+        FrmView fv = new FrmView(lblPrincipaleNom.getText());
+        desktopPane.add(fv);
+        fv.setVisible(true);
+
+        // Supprimer l'ancien JInternalFrame (FrmHebergement2)
+        internalFrame.dispose();
+    }//GEN-LAST:event_lblPrincipaleMouseClicked
+
+    private void lbl2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbl2MouseClicked
+        // Récupérer le JDesktopPane du JFrame parent (FrmPrincipale)
+        JDesktopPane desktopPane = (JDesktopPane) SwingUtilities.getAncestorOfClass(JDesktopPane.class, this);
+
+        // Récupérer le JInternalFrame parent (FrmHebergement2)
+        JInternalFrame internalFrame = (JInternalFrame) SwingUtilities.getAncestorOfClass(JInternalFrame.class, this);
+
+        FrmView fv = new FrmView(lbl2Nom.getText());
+        desktopPane.add(fv);
+        fv.setVisible(true);
+
+        // Supprimer l'ancien JInternalFrame (FrmHebergement2)
+        internalFrame.dispose();
+    }//GEN-LAST:event_lbl2MouseClicked
+
+    private void lbl3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbl3MouseClicked
+        // Récupérer le JDesktopPane du JFrame parent (FrmPrincipale)
+        JDesktopPane desktopPane = (JDesktopPane) SwingUtilities.getAncestorOfClass(JDesktopPane.class, this);
+
+        // Récupérer le JInternalFrame parent (FrmHebergement2)
+        JInternalFrame internalFrame = (JInternalFrame) SwingUtilities.getAncestorOfClass(JInternalFrame.class, this);
+
+        FrmView fv = new FrmView(lbl3Nom.getText());
+        desktopPane.add(fv);
+        fv.setVisible(true);
+
+        // Supprimer l'ancien JInternalFrame (FrmHebergement2)
+        internalFrame.dispose();
+    }//GEN-LAST:event_lbl3MouseClicked
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
     private javax.swing.JLabel lbl2;
     private javax.swing.JLabel lbl2Adresse;
     private javax.swing.JLabel lbl2Nom;
     private javax.swing.JLabel lbl3;
     private javax.swing.JLabel lbl3Adresse;
     private javax.swing.JLabel lbl3Nom;
+    private javax.swing.JLabel lblNom;
+    private javax.swing.JLabel lblPhoto;
     private javax.swing.JLabel lblPrincipale;
     private javax.swing.JLabel lblPrincipaleAdresse;
     private javax.swing.JLabel lblPrincipaleNom;

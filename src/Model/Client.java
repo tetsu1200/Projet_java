@@ -4,6 +4,9 @@
  */
 package Model;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Client 
 {
     private int id;
@@ -14,8 +17,11 @@ public class Client
     private String mail;
     private String mdp;
     private String situation;
+    private String photo;
     
     private boolean typeRegulier = false;
+    
+    private ClientDao cld = new ClientDao();
 
     public Client(int age, String nom, String tel, String mail, String mdp, String situation) {
         this.age = age;
@@ -63,6 +69,12 @@ public class Client
         return typeRegulier;
     }
 
+    public String getPhoto() {
+        return photo;
+    }
+    
+    
+
     public void setId(int id) {
         this.id = id;
     }
@@ -79,7 +91,7 @@ public class Client
         this.tel = tel;
     }
 
-    public void setMail(String email) {
+    public void setMail(String mail) {
         this.mail = mail;
     }
 
@@ -93,6 +105,29 @@ public class Client
 
     public void setTypeRegulier(boolean typeRegulier) {
         this.typeRegulier = typeRegulier;
+    }
+
+    public void setPhoto(String photo) {
+        this.photo = photo;
+    }
+    
+    
+    
+    public Client clientActu(String n, String m) {
+        List<Client> list = new ArrayList<>();
+
+        try {
+            list = cld.recuperer();
+            for (Client client : list) {
+                if (client.getMail().equals(n) && client.getMdp().equals(m)) {
+                    return client;
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return null;
     }
     
     

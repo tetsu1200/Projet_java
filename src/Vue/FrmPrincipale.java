@@ -4,6 +4,7 @@
  */
 package Vue;
 
+import Model.UserManager;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
@@ -15,7 +16,15 @@ import javax.swing.JPanel;
  * @author PROBOOK 450 I7
  */
 public class FrmPrincipale extends javax.swing.JFrame {
+    
+    private static String mailC;
+    private static String mdpC;
     int i = 0;
+    FrmAcceuil f=new FrmAcceuil();
+    FrmHebergement fh=new FrmHebergement();
+    FrmHebergement2 fh2 = new FrmHebergement2();
+            
+    
 
     /**
      * Creates new form FrmPrincipale
@@ -23,8 +32,26 @@ public class FrmPrincipale extends javax.swing.JFrame {
     public FrmPrincipale() {
         initComponents();
         this.setExtendedState(MAXIMIZED_BOTH);
+        
 
     }
+    
+    
+    
+    
+    
+    public void goToFrmHebergementToHebergement2() {
+    // Supprime le FrmHebergement
+        dkp.remove(fh);
+        fh.dispose();
+
+    // Crée et affiche le FrmHebergement2
+        FrmHebergement2 frmHebergement2 = new FrmHebergement2();
+        frmHebergement2.setVisible(true);
+        dkp.add(frmHebergement2);
+    }
+    
+
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -172,7 +199,7 @@ public class FrmPrincipale extends javax.swing.JFrame {
     private void btnAcceuilActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAcceuilActionPerformed
         // TODO add your handling code here:
         //int i = 0
-        FrmAcceuil f=new FrmAcceuil();
+        
      
            
            dkp.removeAll();
@@ -180,7 +207,8 @@ public class FrmPrincipale extends javax.swing.JFrame {
            
            f.setVisible(true);
            i =1;
-       
+           f.profil();
+           
        
 
     }//GEN-LAST:event_btnAcceuilActionPerformed
@@ -188,11 +216,13 @@ public class FrmPrincipale extends javax.swing.JFrame {
     private void btnHeberActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHeberActionPerformed
         // TODO add your handling code here:
         
-        FrmHebergement f=new FrmHebergement();
-  
         dkp.removeAll();
-        dkp.add(f);
-        f.setVisible(true);
+        
+        dkp.add(fh);
+        fh.setVisible(true);
+        fh.profil();
+        
+        
         i =1;
        
     

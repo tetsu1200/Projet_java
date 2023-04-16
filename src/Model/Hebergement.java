@@ -5,6 +5,7 @@
 package Model;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -24,6 +25,7 @@ public class Hebergement {
     private String description;
     private String avis;
     private String categorie;
+    private String ville;
     
     private HebergementDao hed= new HebergementDao();
 
@@ -69,6 +71,12 @@ public class Hebergement {
     public String getCategorie() {
         return categorie;
     }
+
+    public String getVille() {
+        return ville;
+    }
+    
+    
     
 
     public void setId(int id) {
@@ -110,6 +118,12 @@ public class Hebergement {
     public void setCategorie(String categorie) {
         this.categorie = categorie;
     }
+
+    public void setVille(String ville) {
+        this.ville = ville;
+    }
+    
+    
     
     
     public List topHebergement(){
@@ -168,12 +182,12 @@ public class Hebergement {
                         newList.add(list.get(i));
                         j++;
                     }      
-                    System.out.println("Recherche"+newList.size());
+                
                 }           
                 
             }else{
                 newList = null;
-                System.out.println("list ok"+j);
+                
             }
             
             
@@ -185,6 +199,93 @@ public class Hebergement {
         return newList;
         
     }
+    
+    public Hebergement rechercherN(String nom){
+        
+        List<Hebergement> list = new ArrayList<>();
+        int j = -2;
+        
+        
+        try {
+            list = hed.recuperer();
+            
+            if (!list.isEmpty()) {
+                
+                for (int i = 0; i < list.size(); i++) 
+                {
+
+                    if (list.get(i).getNom().equals(nom)) 
+                    {
+                        j=i;
+                       
+                    }      
+                
+                }           
+                
+            }else{
+               
+                
+            }
+            
+            
+        } catch (Exception e) {
+            //e.getStackTrace();
+            e.printStackTrace();
+        }
+        
+        return list.get(j);
+    }
+    
+    
+    
+    public List filtrerH(List<String> neList){
+        
+        List<Hebergement> list = new ArrayList<>();
+        List<Hebergement> newList = new ArrayList<>();
+        
+        
+        
+        try {
+            list = hed.recuperer();
+            
+            if (!list.isEmpty()) {
+                
+                for (int i = 0; i < list.size(); i++) 
+                {
+
+                    for (String neList1 : neList) { 
+                        if (Arrays.asList("1","2","3","4","5").contains(neList1)) {
+                            
+                            int intValue = Integer.parseInt(neList1) ;
+                            System.err.println("intValue"+ intValue);
+                            if (list.get(i).getNbrEtoile()== intValue) {
+                                newList.add(list.get(i));
+                            }
+                        }else{
+
+                            if (list.get(i).getCategorie().equals(neList1)) 
+                            {
+                                newList.add(list.get(i));
+                            }                          
+                        }
+                    }
+                }           
+                
+            }else{
+                newList = null;
+            }
+            
+            
+        } catch (Exception e) {
+            //e.getStackTrace();
+            e.printStackTrace();
+        }
+        
+        return newList;
+        
+    }
+    
+    
     
     
     

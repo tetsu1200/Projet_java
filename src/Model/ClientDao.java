@@ -57,17 +57,14 @@ public class ClientDao
     
     public ResultSet authentification(String mail, String mdp)
     {
-        String sql = "SElECT * FROM  employes,clients WHERE mailClient = ? OR mailEmpl = ? "
-                + "AND mdpClient = ? OR mdpEmpl = ?";
+        String sql = "SElECT * FROM clients WHERE mailClient = ? AND mdpClient = ?";
         
         try {
             con = cn.connnecterBD();
             pst = con.prepareStatement(sql);
             
             pst.setString(1, mail);
-            pst.setString(2, mail);
-            pst.setString(3, mdp);
-            pst.setString(4, mdp);
+            pst.setString(2, mdp);  
             
             rs = pst.executeQuery();
             
@@ -92,12 +89,14 @@ public class ClientDao
             while (rs.next()) {
                 Client cl = new Client();
                 cl.setId(rs.getInt("idClient"));
+                cl.setNom(rs.getString("nomClient"));
                 cl.setTel(rs.getString("telClient"));
                 cl.setMail(rs.getString("mailClient"));
                 cl.setAge(rs.getInt("ageClient"));
                 cl.setSituation(rs.getString("situationClient"));
                 cl.setTypeRegulier(rs.getBoolean("typeRegulier"));
                 cl.setMdp(rs.getString("mdpClient"));
+                cl.setPhoto(rs.getString("photo"));
                 list.add(cl);
      
             }

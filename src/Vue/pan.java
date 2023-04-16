@@ -4,6 +4,12 @@
  */
 package Vue;
 
+import javax.swing.Icon;
+import javax.swing.JDesktopPane;
+import javax.swing.JInternalFrame;
+import javax.swing.JLabel;
+import javax.swing.SwingUtilities;
+
 /**
  *
  * @author PROBOOK 450 I7
@@ -13,9 +19,24 @@ public class pan extends javax.swing.JPanel {
     /**
      * Creates new form pan
      */
-    public pan() {
+    public pan() { 
         initComponents();
     }
+
+    public void setLblNom(String lblNom) {
+        this.lblNom.setText(lblNom);
+    }
+
+    public void setLblPhoto(Icon lblPhoto) {
+        this.lblPhoto.setIcon(lblPhoto);
+    }
+    
+    
+    
+
+    
+    
+    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -26,21 +47,76 @@ public class pan extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        setBackground(new java.awt.Color(255, 255, 0));
+        lblNom = new javax.swing.JLabel();
+        lblPhoto = new javax.swing.JLabel();
+        btnOffre = new javax.swing.JButton();
+
+        setBackground(new java.awt.Color(255, 255, 255));
+        setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 204, 204)));
+
+        lblNom.setFont(new java.awt.Font("Calibri", 1, 36)); // NOI18N
+        lblNom.setForeground(new java.awt.Color(51, 51, 255));
+        lblNom.setText("Nom hotel");
+
+        lblPhoto.setText("jLabel2");
+
+        btnOffre.setBackground(new java.awt.Color(51, 51, 255));
+        btnOffre.setFont(new java.awt.Font("Calibri", 0, 18)); // NOI18N
+        btnOffre.setForeground(new java.awt.Color(255, 255, 255));
+        btnOffre.setText("Voir l'offre");
+        btnOffre.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnOffreActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addComponent(lblPhoto, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(lblNom, javax.swing.GroupLayout.PREFERRED_SIZE, 295, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(57, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btnOffre)
+                        .addContainerGap())))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(lblNom, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 83, Short.MAX_VALUE)
+                .addComponent(btnOffre, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
+            .addComponent(lblPhoto, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    private void btnOffreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnOffreActionPerformed
+        
+        // Récupérer le JDesktopPane du JFrame parent (FrmPrincipale)
+        JDesktopPane desktopPane = (JDesktopPane) SwingUtilities.getAncestorOfClass(JDesktopPane.class, this);
+
+        // Récupérer le JInternalFrame parent (FrmHebergement2)
+        JInternalFrame internalFrame = (JInternalFrame) SwingUtilities.getAncestorOfClass(JInternalFrame.class, this);
+
+        FrmView viewFrame = new FrmView(lblNom.getText());
+        desktopPane.add(viewFrame);
+        viewFrame.setVisible(true);
+
+        // Supprimer l'ancien JInternalFrame (FrmHebergement2)
+        internalFrame.dispose();
+    }//GEN-LAST:event_btnOffreActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnOffre;
+    public javax.swing.JLabel lblNom;
+    private javax.swing.JLabel lblPhoto;
     // End of variables declaration//GEN-END:variables
 }
