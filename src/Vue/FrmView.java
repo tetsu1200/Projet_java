@@ -264,6 +264,11 @@ public class FrmView extends javax.swing.JInternalFrame {
 
         btnDelete.setBackground(new java.awt.Color(255, 0, 0));
         btnDelete.setText("jButton1");
+        btnDelete.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnDeleteActionPerformed(evt);
+            }
+        });
 
         btnModif.setBackground(new java.awt.Color(0, 0, 255));
         btnModif.setText("jButton2");
@@ -342,6 +347,10 @@ public class FrmView extends javax.swing.JInternalFrame {
         ReservationDao red = new ReservationDao();
         red.enregistrer(re);
     }//GEN-LAST:event_btnReserverActionPerformed
+
+    private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnDeleteActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

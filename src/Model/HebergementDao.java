@@ -60,4 +60,34 @@ public class HebergementDao {
         
     }
     
+    public List recupererVille()
+    {
+        List<Hebergement> list = new ArrayList<>();
+        
+        String sql  = "SELECT DISTINCT ville from hebergement";
+        
+        try {
+            con = cn.connnecterBD();
+            pst = con.prepareStatement(sql);
+            rs = pst.executeQuery();
+            
+            while (rs.next()) {
+                Hebergement he = new Hebergement();
+                he.setVille(rs.getString("ville"));
+                list.add(he);
+     
+            }
+            System.out.println("recup ok");
+        } catch (Exception e) 
+        {
+            e.getStackTrace();
+            e.printStackTrace();
+            System.err.println("reup erro");
+        }
+        
+        
+        return list;
+        
+    }
+    
 }

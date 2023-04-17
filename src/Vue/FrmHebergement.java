@@ -8,9 +8,11 @@ import Model.Client;
 import Model.ClientDao;
 import Model.Employe;
 import Model.Hebergement;
+import Model.HebergementDao;
 import Model.UserManager;
 import java.awt.Image;
 import java.beans.PropertyVetoException;
+import java.util.AbstractList;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
@@ -45,6 +47,7 @@ public class FrmHebergement extends javax.swing.JInternalFrame {
         } catch (PropertyVetoException ex) {
             Logger.getLogger(FrmAcceuil.class.getName()).log(Level.SEVERE, null, ex);
         }
+        Cbo();
     }
     
    
@@ -62,7 +65,6 @@ public class FrmHebergement extends javax.swing.JInternalFrame {
 
         jPanel1 = new javax.swing.JPanel();
         cVille = new javax.swing.JComboBox<>();
-        cAtegorieHeber = new javax.swing.JComboBox<>();
         txtPrixInitial = new javax.swing.JTextField();
         btnRechercher = new javax.swing.JButton();
         txtPrixFinal = new javax.swing.JTextField();
@@ -75,18 +77,8 @@ public class FrmHebergement extends javax.swing.JInternalFrame {
 
         cVille.setFont(new java.awt.Font("Calibri", 0, 18)); // NOI18N
         cVille.setForeground(new java.awt.Color(163, 96, 230));
-        cVille.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "ville", "Paris", "Reims", "Strasbourg" }));
+        cVille.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "ville" }));
         cVille.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(87, 66, 157), 4));
-
-        cAtegorieHeber.setFont(new java.awt.Font("Calibri", 0, 18)); // NOI18N
-        cAtegorieHeber.setForeground(new java.awt.Color(163, 96, 230));
-        cAtegorieHeber.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "categorieheber", "hotel", "villa", " " }));
-        cAtegorieHeber.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(87, 66, 157), 4));
-        cAtegorieHeber.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cAtegorieHeberActionPerformed(evt);
-            }
-        });
 
         txtPrixInitial.setFont(new java.awt.Font("Calibri", 0, 18)); // NOI18N
         txtPrixInitial.setForeground(new java.awt.Color(163, 96, 230));
@@ -139,23 +131,22 @@ public class FrmHebergement extends javax.swing.JInternalFrame {
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(75, 75, 75)
-                .addComponent(cVille, javax.swing.GroupLayout.PREFERRED_SIZE, 201, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(cAtegorieHeber, javax.swing.GroupLayout.PREFERRED_SIZE, 201, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(txtPrixInitial, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(txtPrixFinal, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btnRechercher)
-                .addGap(107, 107, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(lblPhoto, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18))
+                .addContainerGap(211, Short.MAX_VALUE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(lblPhoto, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addComponent(cVille, javax.swing.GroupLayout.PREFERRED_SIZE, 201, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(txtPrixInitial, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(txtPrixFinal, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btnRechercher)
+                        .addGap(178, 178, 178))))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -164,15 +155,14 @@ public class FrmHebergement extends javax.swing.JInternalFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(lblPhoto, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(84, 84, 84)
+                .addGap(90, 90, 90)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(btnRechercher, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(cAtegorieHeber, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(cVille, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(txtPrixFinal, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(txtPrixInitial, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(412, Short.MAX_VALUE))
+                .addContainerGap(406, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -221,20 +211,47 @@ public class FrmHebergement extends javax.swing.JInternalFrame {
         lblNom.setText(em.getNom());
         
     }
+    
+    public List recupVille(){
+        HebergementDao hed = new HebergementDao();
+        List<Hebergement> list = new ArrayList<>();
+        list = hed.recupererVille();
+        return list;
+    }
+    
+    public void Cbo(){
+        
+        List<Hebergement> list = new ArrayList<>();
+        list = recupVille();
+        for (Hebergement he : list) {
+            cVille.addItem(he.getVille());
+        } 
+    }
+    
+    public List Recherche(){
+        List<String> list1 = new ArrayList<>();
+        List<Hebergement> listStr = new ArrayList<>();
+        Hebergement h = new Hebergement();
+        
+        list1.add(cVille.getSelectedItem().toString());
+        list1.add(txtPrixInitial.getText());
+        list1.add(txtPrixFinal.getText());
+        
+        listStr = h.rechercherH(Integer.parseInt(txtPrixInitial.getText()),Integer.parseInt(txtPrixFinal.getText()),cVille.getSelectedItem().toString());
+   
+        
+        return listStr;
+    }
 
     
     
     
-    private void cAtegorieHeberActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cAtegorieHeberActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_cAtegorieHeberActionPerformed
-
     private void btnRechercherActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRechercherActionPerformed
 
         //Pour recuperer le parent de FrmHebergement        
         FrmPrincipale frmPrincipale = (FrmPrincipale) SwingUtilities.getWindowAncestor(FrmHebergement.this);
         //Supprimer FrmHebergement et afficher FrmHebergement2
-        frmPrincipale.goToFrmHebergementToHebergement2();
+        frmPrincipale.goToFrmHebergementToHebergement2(Recherche());
         
     }//GEN-LAST:event_btnRechercherActionPerformed
 
@@ -245,7 +262,6 @@ public class FrmHebergement extends javax.swing.JInternalFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnRechercher;
-    private javax.swing.JComboBox<String> cAtegorieHeber;
     private javax.swing.JComboBox<String> cVille;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;

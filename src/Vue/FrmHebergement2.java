@@ -29,12 +29,15 @@ public class FrmHebergement2 extends javax.swing.JInternalFrame {
     
     ImageIcon photo;
     FrmHebergement fhe = new FrmHebergement();
+    List<Hebergement> elements = new ArrayList<>();
 
     /**
      * Creates new form FrmHebergement2
      */
-    public FrmHebergement2() {
+    public FrmHebergement2(List<Hebergement> elements) {
         initComponents();
+        this.elements = elements;
+        Gpan(elements);
         jPanel1.setLayout(new BoxLayout(jPanel1, BoxLayout.Y_AXIS));
         BoxLayout boxLayout = new BoxLayout(jPanel1, BoxLayout.Y_AXIS);
         jPanel1.setLayout(boxLayout);
@@ -48,6 +51,7 @@ public class FrmHebergement2 extends javax.swing.JInternalFrame {
         }
         //fhe.profil();
     }
+    
     
     public List select(){
         List<String> list = new ArrayList<>();
@@ -111,7 +115,13 @@ public class FrmHebergement2 extends javax.swing.JInternalFrame {
         List<String> listStr = new ArrayList<>();
         listStr = select();
         Hebergement h = new Hebergement();
-        list = h.filtrerH(listStr);
+        list = h.filtrerH(listStr,elements);
+        Gpan(list);
+        
+        
+    }
+    
+    public void Gpan(List<Hebergement> list){
         
         for (Hebergement heber : list) 
         {
@@ -123,6 +133,7 @@ public class FrmHebergement2 extends javax.swing.JInternalFrame {
             // récupérer les informations de l'objet Hebergement actuel
             String nom = heber.getNom();
             String chemin = heber.getPhoto();
+            int id = heber.getId();
             
             photo=new ImageIcon(chemin);
             //redimentionnement de l'image en fonction de la zone d'affichage
@@ -131,6 +142,7 @@ public class FrmHebergement2 extends javax.swing.JInternalFrame {
             // définir les propriétés lblNom et lblPrenom de l'objet pan correspondant
             panelRouge.setLblNom(nom);
             panelRouge.setLblPhoto(photo);
+            panelRouge.setLblId(id);
         }
     }
     
@@ -539,8 +551,6 @@ public class FrmHebergement2 extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
         jPanel1.removeAll();
         filtre();
-        //select();
-        //System.out.println("Action"+jCheckBox1.isSelected());
     }//GEN-LAST:event_jButton1ActionPerformed
 
 

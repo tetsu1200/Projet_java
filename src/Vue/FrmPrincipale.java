@@ -4,10 +4,12 @@
  */
 package Vue;
 
+import Model.Hebergement;
 import Model.UserManager;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
+import java.util.List;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
@@ -22,7 +24,7 @@ public class FrmPrincipale extends javax.swing.JFrame {
     int i = 0;
     FrmAcceuil f=new FrmAcceuil();
     FrmHebergement fh=new FrmHebergement();
-    FrmHebergement2 fh2 = new FrmHebergement2();
+    //FrmHebergement2 fh2 = new FrmHebergement2();
             
     
 
@@ -36,13 +38,13 @@ public class FrmPrincipale extends javax.swing.JFrame {
     } 
     
     
-    public void goToFrmHebergementToHebergement2() {
+    public void goToFrmHebergementToHebergement2(List<Hebergement> list) {
     // Supprime le FrmHebergement
         dkp.remove(fh);
         fh.dispose();
 
     // Crée et affiche le FrmHebergement2
-        FrmHebergement2 frmHebergement2 = new FrmHebergement2();
+        FrmHebergement2 frmHebergement2 = new FrmHebergement2(list);
         frmHebergement2.setVisible(true);
         dkp.add(frmHebergement2);
     }

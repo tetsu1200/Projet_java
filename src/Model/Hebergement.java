@@ -162,7 +162,7 @@ public class Hebergement {
     }
     
     
-    public List rechercherH(int tarif){
+    public List rechercherH(int Tp, int Td, String vill){
         
         List<Hebergement> list = new ArrayList<>();
         List<Hebergement> newList = new ArrayList<>();
@@ -176,15 +176,19 @@ public class Hebergement {
                 
                 for (int i = 0; i < list.size(); i++) 
                 {
-
-                    if (list.get(i).tarif == tarif) 
-                    {
-                        newList.add(list.get(i));
-                        j++;
-                    }      
+                    if (vill.equals("ville")) {
+                        if (list.get(i).getTarif()<=Td && list.get(i).getTarif()>=Tp) {
+                            newList.add(list.get(i));
+                        }
+                    }else{
+                        if (list.get(i).getVille().equals(vill) && list.get(i).getTarif()<=Td && list.get(i).getTarif()>=Tp) 
+                        {
+                            newList.add(list.get(i));
+                        }  
+                    }
+                       
                 
-                }           
-                
+                }             
             }else{
                 newList = null;
                 
@@ -238,15 +242,16 @@ public class Hebergement {
     
     
     
-    public List filtrerH(List<String> neList){
+    public List filtrerH(List<String> neList,List<Hebergement> list){
         
-        List<Hebergement> list = new ArrayList<>();
+        //List<Hebergement> list = new ArrayList<>();
         List<Hebergement> newList = new ArrayList<>();
         
         
         
+        
         try {
-            list = hed.recuperer();
+            //list = hed.recuperer();
             
             if (!list.isEmpty()) {
                 
@@ -285,11 +290,6 @@ public class Hebergement {
         
     }
     
-    
-    
-    
-    
-    
-    
+        
     
 }
