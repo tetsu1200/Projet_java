@@ -19,9 +19,9 @@ public class Conexion {
         {
             Class.forName("com.mysql.cj.jdbc.Driver");
             System.out.println("Driver ok!");
-            String url ="jdbc:mysql://localhost:3306/bdbooking";
-            String user  ="root";
-            String password="root";
+            String url ="jdbc:mysql://localhost:3306/dbbooking";
+            String user  ="LIPOU";
+            String password="LIPOU1234";
             con = DriverManager.getConnection(url,user,password);
             System.out.println("Connection ok!");
             return con;      

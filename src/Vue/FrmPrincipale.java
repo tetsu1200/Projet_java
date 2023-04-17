@@ -31,13 +31,9 @@ public class FrmPrincipale extends javax.swing.JFrame {
      */
     public FrmPrincipale() {
         initComponents();
-        this.setExtendedState(MAXIMIZED_BOTH);
-        
+        this.setExtendedState(MAXIMIZED_BOTH);   
 
-    }
-    
-    
-    
+    } 
     
     
     public void goToFrmHebergementToHebergement2() {

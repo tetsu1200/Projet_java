@@ -47,6 +47,8 @@ public class FrmHebergement extends javax.swing.JInternalFrame {
         }
     }
     
+   
+    
     
 
     /**
@@ -64,8 +66,6 @@ public class FrmHebergement extends javax.swing.JInternalFrame {
         txtPrixInitial = new javax.swing.JTextField();
         btnRechercher = new javax.swing.JButton();
         txtPrixFinal = new javax.swing.JTextField();
-        jDateChooser1 = new com.toedter.calendar.JDateChooser();
-        jDateChooser2 = new com.toedter.calendar.JDateChooser();
         jPanel2 = new javax.swing.JPanel();
         lblNom = new javax.swing.JLabel();
         lblPhoto = new javax.swing.JLabel();
@@ -75,13 +75,12 @@ public class FrmHebergement extends javax.swing.JInternalFrame {
 
         cVille.setFont(new java.awt.Font("Calibri", 0, 18)); // NOI18N
         cVille.setForeground(new java.awt.Color(163, 96, 230));
-        cVille.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "ville", "Item 2", "Item 3", "Item 4" }));
-        cVille.setSelectedIndex(1);
+        cVille.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "ville", "Paris", "Reims", "Strasbourg" }));
         cVille.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(87, 66, 157), 4));
 
         cAtegorieHeber.setFont(new java.awt.Font("Calibri", 0, 18)); // NOI18N
         cAtegorieHeber.setForeground(new java.awt.Color(163, 96, 230));
-        cAtegorieHeber.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "categorieheber", "Item 2", "Item 3", "Item 4" }));
+        cAtegorieHeber.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "categorieheber", "hotel", "villa", " " }));
         cAtegorieHeber.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(87, 66, 157), 4));
         cAtegorieHeber.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -115,11 +114,6 @@ public class FrmHebergement extends javax.swing.JInternalFrame {
             }
         });
 
-        jDateChooser1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(87, 66, 157), 4));
-        jDateChooser1.setToolTipText("");
-
-        jDateChooser2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(87, 66, 157), 4));
-
         lblNom.setFont(new java.awt.Font("Calibri", 0, 18)); // NOI18N
         lblNom.setText("Nom");
 
@@ -148,19 +142,13 @@ public class FrmHebergement extends javax.swing.JInternalFrame {
                 .addGap(75, 75, 75)
                 .addComponent(cVille, javax.swing.GroupLayout.PREFERRED_SIZE, 201, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(cAtegorieHeber, javax.swing.GroupLayout.PREFERRED_SIZE, 201, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(txtPrixInitial, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(txtPrixFinal, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btnRechercher))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jDateChooser1, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(37, 37, 37)
-                        .addComponent(jDateChooser2, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addComponent(cAtegorieHeber, javax.swing.GroupLayout.PREFERRED_SIZE, 201, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(txtPrixInitial, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(txtPrixFinal, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btnRechercher)
                 .addGap(107, 107, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -184,11 +172,7 @@ public class FrmHebergement extends javax.swing.JInternalFrame {
                         .addComponent(cVille, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(txtPrixFinal, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(txtPrixInitial, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(32, 32, 32)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jDateChooser1, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jDateChooser2, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(320, Short.MAX_VALUE))
+                .addContainerGap(412, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -199,7 +183,9 @@ public class FrmHebergement extends javax.swing.JInternalFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
         pack();
@@ -235,6 +221,7 @@ public class FrmHebergement extends javax.swing.JInternalFrame {
         lblNom.setText(em.getNom());
         
     }
+
     
     
     
@@ -243,7 +230,8 @@ public class FrmHebergement extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_cAtegorieHeberActionPerformed
 
     private void btnRechercherActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRechercherActionPerformed
-        //Pour recuperer le parent de FrmHebergement
+
+        //Pour recuperer le parent de FrmHebergement        
         FrmPrincipale frmPrincipale = (FrmPrincipale) SwingUtilities.getWindowAncestor(FrmHebergement.this);
         //Supprimer FrmHebergement et afficher FrmHebergement2
         frmPrincipale.goToFrmHebergementToHebergement2();
@@ -259,8 +247,6 @@ public class FrmHebergement extends javax.swing.JInternalFrame {
     private javax.swing.JButton btnRechercher;
     private javax.swing.JComboBox<String> cAtegorieHeber;
     private javax.swing.JComboBox<String> cVille;
-    private com.toedter.calendar.JDateChooser jDateChooser1;
-    private com.toedter.calendar.JDateChooser jDateChooser2;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JLabel lblNom;
