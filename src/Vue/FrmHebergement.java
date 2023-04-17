@@ -6,6 +6,7 @@ package Vue;
 
 import Model.Client;
 import Model.ClientDao;
+import Model.Employe;
 import Model.Hebergement;
 import Model.UserManager;
 import java.awt.Image;
@@ -29,6 +30,7 @@ public class FrmHebergement extends javax.swing.JInternalFrame {
     
     Hebergement he = new Hebergement();
     Client cl = new Client();
+    Employe em = new Employe();
     Login lg = new Login();
     List<Hebergement> list = new ArrayList<>();
 
@@ -204,7 +206,7 @@ public class FrmHebergement extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     
-    public void profil(){
+    public void profilCl(){
         
         cl = cl.clientActu(UserManager.getEmail(), UserManager.getPassword());
         
@@ -216,6 +218,21 @@ public class FrmHebergement extends javax.swing.JInternalFrame {
         lblPhoto.setIcon(photo);
         //affichage du nom dans la zone
         lblNom.setText(cl.getNom());
+        
+    }
+    
+    public void profilEm(){
+        
+        em = em.EmplActu(UserManager.getEmail(), UserManager.getPassword());
+        
+        /*String chemin = em.getPhoto();
+        photo=new ImageIcon(chemin);
+        //redimentionnement de l'image en fonction de la zone d'affichage
+        photo=new ImageIcon(photo.getImage().getScaledInstance(77,77, Image.SCALE_DEFAULT));
+        //affichage de l'image dans la zone 
+        lblPhoto.setIcon(photo);*/
+        //affichage du nom dans la zone
+        lblNom.setText(em.getNom());
         
     }
     

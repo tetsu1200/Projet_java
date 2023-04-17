@@ -257,7 +257,7 @@ public class Hebergement {
                         if (Arrays.asList("1","2","3","4","5").contains(neList1)) {
                             
                             int intValue = Integer.parseInt(neList1) ;
-                            System.err.println("intValue"+ intValue);
+                            System.err.println( "intValue"+ intValue);
                             if (list.get(i).getNbrEtoile()== intValue) {
                                 newList.add(list.get(i));
                             }

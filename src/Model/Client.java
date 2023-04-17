@@ -23,13 +23,14 @@ public class Client
     
     private ClientDao cld = new ClientDao();
 
-    public Client(int age, String nom, String tel, String mail, String mdp, String situation) {
+    public Client(int age, String nom, String tel, String mail, String mdp, String situation, String photo) {
         this.age = age;
         this.nom = nom;
         this.tel = tel;
         this.mail = mail;
         this.mdp = mdp;
         this.situation = situation;
+        this.photo = photo;
     }
 
     public Client() {

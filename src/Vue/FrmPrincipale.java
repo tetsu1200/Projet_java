@@ -200,14 +200,17 @@ public class FrmPrincipale extends javax.swing.JFrame {
         // TODO add your handling code here:
         //int i = 0
         
-     
+        dkp.removeAll();
+        dkp.add(f);
            
-           dkp.removeAll();
-           dkp.add(f);
-           
-           f.setVisible(true);
-           i =1;
-           f.profil();
+        f.setVisible(true);
+            i =1;
+             
+        if (UserManager.getVerif() == 0) 
+            f.profilCl();
+        else if (UserManager.getVerif() == 1) 
+            f.profilEm();
+            
            
        
 
@@ -220,8 +223,10 @@ public class FrmPrincipale extends javax.swing.JFrame {
         
         dkp.add(fh);
         fh.setVisible(true);
-        fh.profil();
-        
+        if (UserManager.getVerif() == 0) 
+            fh.profilCl();
+        else if (UserManager.getVerif() == 1) 
+            fh.profilEm();
         
         i =1;
        

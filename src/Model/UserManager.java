@@ -12,6 +12,7 @@ public class UserManager {
     
     private static String email;
     private static String password;
+    private static int verif;
 
     public static String getEmail() {
         return email;
@@ -21,6 +22,12 @@ public class UserManager {
         UserManager.email = email;
     }
 
+    public static void setVerif(int verif) {
+        UserManager.verif = verif;
+    }
+    
+    
+
     public static String getPassword() {
         return password;
     }
@@ -28,4 +35,10 @@ public class UserManager {
     public static void setPassword(String password) {
         UserManager.password = password;
     }
+
+    public static int getVerif() {
+        return verif;
+    }
+    
+    
 }

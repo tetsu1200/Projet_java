@@ -8,6 +8,8 @@ import javax.swing.JOptionPane;
 import java.sql.*;
 import Model.Client;
 import Model.ClientDao;
+import Model.Employe;
+import Model.EmployeDao;
 import Model.UserManager;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -20,7 +22,10 @@ public class Login extends javax.swing.JFrame {
 
     
     private Client cl = new Client();
+    private Employe em = new Employe();
+    
     private ClientDao cld = new ClientDao();
+    private EmployeDao emd = new EmployeDao();
     
     private String mail;
     private String mdp;
@@ -277,15 +282,26 @@ public class Login extends javax.swing.JFrame {
         }else{
             mail = tMail.getText();
             mdp = tMdp.getText();
-            ResultSet rs =  cld.authentification(mail, mdp);
+            ResultSet rs1 =  cld.authentification(mail, mdp);
+            ResultSet rs2 =  emd.authentification(mail, mdp);
+            
             try {
-                if (!rs.isBeforeFirst()) {
+                if (!rs1.isBeforeFirst() && !rs2.isBeforeFirst()) {
                     JOptionPane.showMessageDialog(this, "Compte invalide","Message", JOptionPane.INFORMATION_MESSAGE);
-                }else if (rs.next()) {
+                }else if (rs1.next()) {
                     Login.super.dispose();
                     FrmPrincipale fp = new FrmPrincipale();
                     UserManager.setEmail(mail);
                     UserManager.setPassword(mdp);
+                    UserManager.setVerif(0);
+                    fp.setVisible(true);
+                    this.hide();
+                }else if(rs2.next()){
+                    Login.super.dispose();
+                    FrmPrincipale fp = new FrmPrincipale();
+                    UserManager.setEmail(mail);
+                    UserManager.setPassword(mdp);
+                    UserManager.setVerif(1);
                     fp.setVisible(true);
                     this.hide();
                 }

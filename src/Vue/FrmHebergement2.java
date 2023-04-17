@@ -100,9 +100,6 @@ public class FrmHebergement2 extends javax.swing.JInternalFrame {
         if (jCheckBox17.isSelected()) {
             list.add("Moins de 5 km");
         }
-
-        // Affichage de la liste de choix sélectionnés
-        System.out.println(list.toString());
         return list;
     }
 

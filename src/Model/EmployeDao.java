@@ -4,38 +4,36 @@
  */
 package Model;
 
-import java.sql.*;
-import java.util.List;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  *
  * @author PROBOOK 450 I7
  */
-public class ClientDao 
-{
+public class EmployeDao {
     
     Connection con;
     Conexion cn = new Conexion();
     PreparedStatement pst ;
     ResultSet rs;
     
-    public boolean  enregistrer(Client cl)
+    public boolean  enregistrer(Employe em)
     {
-        String sql = "insert into clients(nomClient,telClient,mailClient,ageClient,situationClient,"
-                + "typeRegulier,mdpClient,photo) values " + "(?,?,?,?,?,?,?,?)";
+        String sql = "insert into employes(nomEmpl,telEmpl,mailEmpl,ageEmpl,mdpClient) "
+                + "values " + "(?,?,?,?,?)";
                                         
         try {
             con = cn.connnecterBD();
             pst = con.prepareStatement(sql);
-            pst.setString(1, cl.getNom());
-            pst.setString(2, cl.getTel());
-            pst.setString(3, cl.getMail());
-            pst.setInt(4, cl.getAge());
-            pst.setString(5, cl.getSituation());
-            pst.setBoolean(6, cl.isTypeRegulier());
-            pst.setString(7, cl.getMdp());
-            pst.setString(8, cl.getPhoto());
+            pst.setString(1, em.getNom());
+            pst.setString(2, em.getTel());
+            pst.setString(3, em.getMail());
+            pst.setInt(4, em.getAge());
+            pst.setString(5, em.getMdp());
             pst.execute();
             
             return true;
@@ -58,7 +56,7 @@ public class ClientDao
     
     public ResultSet authentification(String mail, String mdp)
     {
-        String sql = "SElECT * FROM clients WHERE mailClient = ? AND mdpClient = ?";
+        String sql = "SElECT * FROM employes WHERE mailEmpl = ? AND mdpEmpl = ?";
         
         try {
             con = cn.connnecterBD();
@@ -78,9 +76,9 @@ public class ClientDao
     
     public List recuperer()
     {
-        List<Client> list = new ArrayList<>();
+        List<Employe> list = new ArrayList<>();
         
-        String sql  = "select * from clients";
+        String sql  = "select * from employes";
         
         try {
             con = cn.connnecterBD();
@@ -88,17 +86,14 @@ public class ClientDao
             rs = pst.executeQuery();
             
             while (rs.next()) {
-                Client cl = new Client();
-                cl.setId(rs.getInt("idClient"));
-                cl.setNom(rs.getString("nomClient"));
-                cl.setTel(rs.getString("telClient"));
-                cl.setMail(rs.getString("mailClient"));
-                cl.setAge(rs.getInt("ageClient"));
-                cl.setSituation(rs.getString("situationClient"));
-                cl.setTypeRegulier(rs.getBoolean("typeRegulier"));
-                cl.setMdp(rs.getString("mdpClient"));
-                cl.setPhoto(rs.getString("photo"));
-                list.add(cl);
+                Employe em = new Employe();
+                em.setId(rs.getInt("idEmpl"));
+                em.setNom(rs.getString("nomEmpl"));
+                em.setTel(rs.getString("telEmpl"));
+                em.setMail(rs.getString("mailEmpl"));
+                em.setAge(rs.getInt("ageEmpl"));
+                em.setMdp(rs.getString("mdpEmpl"));
+                list.add(em);
      
             }
         } catch (Exception e) 
@@ -110,5 +105,6 @@ public class ClientDao
         return list;
         
     }
+
     
 }

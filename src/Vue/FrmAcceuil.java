@@ -5,6 +5,7 @@
 package Vue;
 
 import Model.Client;
+import Model.Employe;
 import Model.Hebergement;
 import Model.UserManager;
 import static java.awt.Frame.MAXIMIZED_BOTH;
@@ -29,6 +30,7 @@ public class FrmAcceuil extends javax.swing.JInternalFrame {
     ImageIcon photo;
     Hebergement he = new Hebergement();
     Client cl = new Client();
+    Employe em = new Employe();
     private List<Hebergement> list = new ArrayList<>();
             
     
@@ -48,6 +50,9 @@ public class FrmAcceuil extends javax.swing.JInternalFrame {
             Logger.getLogger(FrmAcceuil.class.getName()).log(Level.SEVERE, null, ex);
         }
         charger();
+        /*if (UserManager.getVerif() == 0) {
+            Charger1();
+        }*/
     }
     
     public void modP(int pos,int x, int y, JLabel lbl, JLabel lblNom,JLabel lblAdresse){
@@ -74,7 +79,12 @@ public class FrmAcceuil extends javax.swing.JInternalFrame {
         
     }
     
-    public void profil(){
+    public void Charger1(){
+        btnDelete.setVisible(false);
+        btnModif.setVisible(false);
+    }
+    
+    public void profilCl(){
         
         cl = cl.clientActu(UserManager.getEmail(), UserManager.getPassword());
         
@@ -86,6 +96,21 @@ public class FrmAcceuil extends javax.swing.JInternalFrame {
         lblPhoto.setIcon(photo);
         //affichage du nom dans la zone
         lblNom.setText(cl.getNom());
+        
+    }
+    
+    public void profilEm(){
+        
+        em = em.EmplActu(UserManager.getEmail(), UserManager.getPassword());
+        
+        /*String chemin = em.getPhoto();
+        photo=new ImageIcon(chemin);
+        //redimentionnement de l'image en fonction de la zone d'affichage
+        photo=new ImageIcon(photo.getImage().getScaledInstance(77,77, Image.SCALE_DEFAULT));
+        //affichage de l'image dans la zone 
+        lblPhoto.setIcon(photo);*/
+        //affichage du nom dans la zone
+        lblNom.setText(em.getNom());
         
     }
 
@@ -111,6 +136,8 @@ public class FrmAcceuil extends javax.swing.JInternalFrame {
         jPanel2 = new javax.swing.JPanel();
         lblNom = new javax.swing.JLabel();
         lblPhoto = new javax.swing.JLabel();
+        btnDelete = new javax.swing.JButton();
+        btnModif = new javax.swing.JButton();
 
         setBackground(new java.awt.Color(255, 255, 255));
         setBorder(null);
@@ -188,6 +215,16 @@ public class FrmAcceuil extends javax.swing.JInternalFrame {
                 .addContainerGap())
         );
 
+        btnDelete.setBackground(new java.awt.Color(255, 0, 0));
+        btnDelete.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        btnDelete.setForeground(new java.awt.Color(255, 255, 255));
+        btnDelete.setText("-");
+
+        btnModif.setBackground(new java.awt.Color(51, 51, 255));
+        btnModif.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        btnModif.setForeground(new java.awt.Color(255, 255, 255));
+        btnModif.setText("☼");
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -206,16 +243,21 @@ public class FrmAcceuil extends javax.swing.JInternalFrame {
                             .addComponent(lbl3Adresse, javax.swing.GroupLayout.PREFERRED_SIZE, 485, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(lbl3Nom, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(lbl3, javax.swing.GroupLayout.PREFERRED_SIZE, 209, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addContainerGap(25, Short.MAX_VALUE))
+                        .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(lblPrincipale, javax.swing.GroupLayout.DEFAULT_SIZE, 485, Short.MAX_VALUE)
                             .addComponent(lblPrincipaleNom, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(lblPrincipaleAdresse, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(btnDelete, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnModif, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(lblPhoto, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addComponent(lblPhoto, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -223,14 +265,21 @@ public class FrmAcceuil extends javax.swing.JInternalFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(22, 22, 22)
-                        .addComponent(lblPrincipale, javax.swing.GroupLayout.PREFERRED_SIZE, 294, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                        .addComponent(lblPhoto, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jPanel2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(lblPrincipaleNom, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(lblPrincipaleAdresse)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(btnDelete)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(btnModif))
+                            .addComponent(lblPrincipale, javax.swing.GroupLayout.PREFERRED_SIZE, 294, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(lblPrincipaleNom, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(lblPrincipaleAdresse))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(lblPhoto, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jPanel2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(lbl3, javax.swing.GroupLayout.DEFAULT_SIZE, 215, Short.MAX_VALUE)
@@ -307,6 +356,8 @@ public class FrmAcceuil extends javax.swing.JInternalFrame {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnDelete;
+    private javax.swing.JButton btnModif;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JLabel lbl2;
