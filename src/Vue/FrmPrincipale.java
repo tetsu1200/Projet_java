@@ -39,8 +39,20 @@ public class FrmPrincipale extends javax.swing.JFrame {
         initComponents();
         this.setExtendedState(MAXIMIZED_BOTH); 
         System.out.println("FrmPrincipale OK");
+        charger();
 
     } 
+    
+    public void charger(){
+        
+        if (UserManager.getVerif() == 1) {
+            btnClient.setVisible(true);
+        }else if (UserManager.getVerif() == 0) {
+            btnClient.setVisible(false);
+        }
+        
+        
+    }
     
     
     public void goToFrmHebergementToHebergement2(List<Hebergement> list) {

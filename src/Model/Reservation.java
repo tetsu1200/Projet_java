@@ -18,8 +18,6 @@ public class Reservation {
     private int nbrChambre;
     
     
-    private String destination;
-    
     private String dateArr;
     private String dateDep;
 
@@ -47,9 +45,6 @@ public class Reservation {
         return nbrChambre;
     }
 
-    public String getDestination() {
-        return destination;
-    }
 
     public String getDateArr() {
         return dateArr;
@@ -83,9 +78,6 @@ public class Reservation {
         this.nbrChambre = nbrChambre;
     }
 
-    public void setDestination(String destination) {
-        this.destination = destination;
-    }
 
     public void setDateArr(String dateArr) {
         this.dateArr = dateArr;

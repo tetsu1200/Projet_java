@@ -5,6 +5,7 @@
 package Vue;
 
 import Model.Client;
+import Model.ClientDao;
 import Model.Hebergement;
 import Model.Reservation;
 import Model.ReservationDao;
@@ -16,6 +17,7 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.ImageIcon;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -104,18 +106,12 @@ public class FrmView extends javax.swing.JInternalFrame {
     }
     
     public Reservation reser(){
-        Reservation r = new Reservation();
-        
-        r.setDestination(h.getVille());
-        //r.getNbrAdulte(txtNbrAdu.getText());
-        //r.getNbrChambre(h.getNbrChambre());
-        //r.getNbrEnfant(txtNbrEnf.getText());
-        
-        //r.getIdClient()
-        
-        
-        
-        return r;
+    Reservation r = new Reservation();
+   
+    r.setNbrAdulte(Integer.parseInt(txtNbrAdu.getText()));
+    r.setNbrChambre(h.getNbrChambre());
+    r.setNbrEnfant(Integer.parseInt(txtNbrEnf.getText()));
+    return r;
     }
 
     /**
@@ -144,6 +140,7 @@ public class FrmView extends javax.swing.JInternalFrame {
         lblPhoto1 = new javax.swing.JLabel();
         btnDelete = new javax.swing.JButton();
         btnModif = new javax.swing.JButton();
+        lblId = new javax.swing.JLabel();
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -273,6 +270,8 @@ public class FrmView extends javax.swing.JInternalFrame {
         btnModif.setBackground(new java.awt.Color(0, 0, 255));
         btnModif.setText("jButton2");
 
+        lblId.setText("jLabel4");
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -285,12 +284,14 @@ public class FrmView extends javax.swing.JInternalFrame {
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addGap(31, 31, 31)
                         .addComponent(lblPhoto, javax.swing.GroupLayout.PREFERRED_SIZE, 320, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(175, 175, 175)
                         .addComponent(panReser, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addContainerGap(42, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(28, 28, 28)
+                        .addComponent(lblId)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -308,8 +309,13 @@ public class FrmView extends javax.swing.JInternalFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(23, 23, 23)
-                        .addComponent(lblPhoto, javax.swing.GroupLayout.PREFERRED_SIZE, 319, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGap(23, 23, 23)
+                                .addComponent(lblPhoto, javax.swing.GroupLayout.PREFERRED_SIZE, 319, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGap(34, 34, 34)
+                                .addComponent(lblId)))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
@@ -343,11 +349,32 @@ public class FrmView extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnReserverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnReserverActionPerformed
-        // TODO add your handling code here:
-        ReservationDao red = new ReservationDao();
-        red.enregistrer(re);
+        ClientDao clientDao = new ClientDao();
+    ReservationDao resDao = new ReservationDao();
+    
+    // Récupérer l'ID du client à partir de son adresse e-mail
+    int idClient = clientDao.getIdByEmail(UserManager.getEmail());
+    //int idHeber= Integer.parseInt(lblId.getText());
+    
+    // Créer un nouvel objet Reservation à partir des informations saisies dans le formulaire
+    Reservation res = new Reservation();
+    res.setIdClient(idClient);
+    res.setIdHeber(idH);
+    //res.setNom(txtNom.getText());
+    int nbrAdulte = Integer.parseInt(txtNbrAdu.getText());
+    int nbrEnfant = Integer.parseInt(txtNbrEnf.getText());
+    
+    
+    // Enregistrer la réservation dans la base de données
+    boolean isReservationSuccessful = resDao.enregistrer(res);
+    
+    if (isReservationSuccessful) {
+        JOptionPane.showMessageDialog(this, "La réservation a été effectuée avec succès.");
+    } else {
+        JOptionPane.showMessageDialog(this, "Une erreur est survenue lors de la réservation. Veuillez réessayer plus tard.");
+        
     }//GEN-LAST:event_btnReserverActionPerformed
-
+    }
     private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_btnDeleteActionPerformed
@@ -363,6 +390,7 @@ public class FrmView extends javax.swing.JInternalFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel4;
+    private javax.swing.JLabel lblId;
     private javax.swing.JLabel lblNom;
     private javax.swing.JLabel lblPhoto;
     private javax.swing.JLabel lblPhoto1;

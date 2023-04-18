@@ -166,6 +166,24 @@ public class ClientDao
         }
     }
 }
+    
+    
+    public int getIdByEmail(String email) {
+        int id = 0;
+        try {
+            Connection conn = cn.connnecterBD();
+            PreparedStatement statement = conn.prepareStatement("SELECT idClient FROM clients WHERE mailClient = ?");
+            statement.setString(1, email);
+            ResultSet result = statement.executeQuery();
+            if(result.next()) {
+                id = result.getInt("idClient");
+            }
+            conn.close();
+        } catch(SQLException e) {
+            e.printStackTrace();
+        }
+        return id;
+    }
 
     
 }

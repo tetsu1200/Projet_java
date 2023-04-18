@@ -24,20 +24,19 @@ public class ReservationDao {
     
     public boolean  enregistrer(Reservation re)
     {
-        String sql = "INSERT INTO reservation(destination, dateArr, dateDep, nbrAdulte, nbrEnfant, "
-                + "nbrChambre, idHeber, idClient) values " + "(?,?,?,?,?,?,?,?)";
+        String sql = "INSERT INTO reservation(dateArr, dateDep, nbrAdulte, nbrEnfant, "
+                + "nbrChambre, idHeber, idClient) values " + "(?,?,?,?,?,?,?)";
                                         
         try {
             con = cn.connnecterBD();
             pst = con.prepareStatement(sql);
-            pst.setString(1, re.getDestination());
-            pst.setString(2, re.getDateArr());
-            pst.setString(3, re.getDateDep());
-            pst.setInt(4, re.getNbrAdulte());
-            pst.setInt(5, re.getNbrEnfant());
-            pst.setInt(6, re.getNbrChambre());
-            pst.setInt(7, re.getIdHeber());
-            pst.setInt(8, re.getIdClient());
+            pst.setString(1, re.getDateArr());
+            pst.setString(2, re.getDateDep());
+            pst.setInt(3, re.getNbrAdulte());
+            pst.setInt(4, re.getNbrEnfant());
+            pst.setInt(5, re.getNbrChambre());
+            pst.setInt(6, re.getIdHeber());
+            pst.setInt(7, re.getIdClient());
             pst.execute();
             
             return true;
@@ -74,7 +73,6 @@ public class ReservationDao {
                 re.setId(rs.getInt("idClient"));
                 re.setDateArr(rs.getString("dateArr"));
                 re.setDateDep(rs.getString("dateDep"));
-                re.setDestination(rs.getString("destination"));
                 re.setIdClient(rs.getInt("idClient"));
                 re.setIdHeber(rs.getInt("idHeber"));
                 re.setNbrAdulte(rs.getInt("nbrAdulte"));
