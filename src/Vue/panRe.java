@@ -9,6 +9,8 @@ import Model.ClientDao;
 import Model.FrmModifClient;
 import Model.Hebergement;
 import Model.HebergementDao;
+import Model.Reservation;
+import Model.ReservationDao;
 import Model.UserManager;
 import java.util.ArrayList;
 import java.util.List;
@@ -32,7 +34,7 @@ public class panRe extends javax.swing.JPanel {
         charger();
     }
 
-    public void setLblNom(String lblNom) {
+    public void setLblNomCl(String lblNom) {
         this.lblNomCl.setText(lblNom);
     }
 
@@ -43,6 +45,17 @@ public class panRe extends javax.swing.JPanel {
     public void setLblId(int lblId) {
         this.lblId.setText(Integer.toString(lblId));
     }
+
+    public void setLblNomHe(String lblNomHe) {
+        this.lblNomHe.setText(lblNomHe); 
+    }
+
+    public void setLblPrix(String lblPrix) {
+        this.lblPrix.setText(lblPrix) ;
+    }
+    
+    
+    
     
     public void charger(){
         
@@ -63,8 +76,9 @@ public class panRe extends javax.swing.JPanel {
         lblPhoto = new javax.swing.JLabel();
         lblId = new javax.swing.JLabel();
         btnDelete = new javax.swing.JButton();
-        btnModif = new javax.swing.JButton();
         lblNomHe = new javax.swing.JLabel();
+        lblPrix = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(255, 255, 255));
         setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 204, 204)));
@@ -88,19 +102,15 @@ public class panRe extends javax.swing.JPanel {
             }
         });
 
-        btnModif.setBackground(new java.awt.Color(0, 0, 255));
-        btnModif.setFont(new java.awt.Font("Calibri", 0, 18)); // NOI18N
-        btnModif.setForeground(new java.awt.Color(255, 255, 255));
-        btnModif.setText("Modifier");
-        btnModif.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnModifActionPerformed(evt);
-            }
-        });
-
         lblNomHe.setFont(new java.awt.Font("Calibri", 1, 36)); // NOI18N
         lblNomHe.setForeground(new java.awt.Color(51, 51, 255));
         lblNomHe.setText("Nom hotel");
+
+        lblPrix.setFont(new java.awt.Font("Calibri", 0, 18)); // NOI18N
+        lblPrix.setText("jLabel1");
+
+        jLabel1.setFont(new java.awt.Font("Calibri", 1, 18)); // NOI18N
+        jLabel1.setText("PRIX");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -111,80 +121,62 @@ public class panRe extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(btnModif)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(btnDelete)
                         .addGap(14, 14, 14))
                     .addGroup(layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
-                                .addGap(271, 271, 271)
-                                .addComponent(lblId, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(30, 30, 30)
+                                .addComponent(jLabel1)
+                                .addGap(29, 29, 29)
+                                .addComponent(lblPrix, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(0, 247, Short.MAX_VALUE))
+                            .addComponent(lblNomCl, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addGroup(layout.createSequentialGroup()
+                                .addComponent(lblNomHe, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addGap(18, 18, 18)
-                                .addComponent(lblNomCl, javax.swing.GroupLayout.PREFERRED_SIZE, 247, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addContainerGap(86, Short.MAX_VALUE))))
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(layout.createSequentialGroup()
-                    .addGap(180, 180, 180)
-                    .addComponent(lblNomHe, javax.swing.GroupLayout.PREFERRED_SIZE, 247, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(195, Short.MAX_VALUE)))
+                                .addComponent(lblId, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addContainerGap())))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(lblId, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(38, 38, 38)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(lblId, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblNomHe, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(24, 24, 24)
                 .addComponent(lblNomCl, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 81, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 38, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnDelete, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnModif, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(lblPrix, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel1))
+                .addGap(10, 10, 10)
+                .addComponent(btnDelete, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
             .addComponent(lblPhoto, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(layout.createSequentialGroup()
-                    .addGap(10, 10, 10)
-                    .addComponent(lblNomHe, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(182, Short.MAX_VALUE)))
         );
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed
         
-        Client cl = new Client();
-        ClientDao hed = new ClientDao();
+        Reservation re = new Reservation();
+        ReservationDao red = new ReservationDao();
         List<Client> list = new ArrayList<>();
         
-        cl = cl.rechercherById(Integer.parseInt(lblId.getText()));
-        hed.supprimer(cl);
+        re = re.rechercherById(Integer.parseInt(lblId.getText()));
+        red.supprimer(re);
     }//GEN-LAST:event_btnDeleteActionPerformed
-
-    private void btnModifActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModifActionPerformed
-        Client cl = new Client();
-        cl = cl.rechercherById(Integer.parseInt(lblId.getText()));
-        // Récupérer le JDesktopPane du JFrame parent (FrmPrincipale)
-        JDesktopPane desktopPane = (JDesktopPane) SwingUtilities.getAncestorOfClass(JDesktopPane.class, this);
-
-        // Récupérer le JInternalFrame parent (FrmHebergement2)
-        JInternalFrame internalFrame = (JInternalFrame) SwingUtilities.getAncestorOfClass(JInternalFrame.class, this);
-        FrmModifClient fmc = new FrmModifClient(cl);
-        desktopPane.add(fmc);
-        fmc.setVisible(true);
-        
-        // Supprimer l'ancien JInternalFrame (FrmHebergement2)
-        internalFrame.dispose();
-        
-    }//GEN-LAST:event_btnModifActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnDelete;
-    private javax.swing.JButton btnModif;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel lblId;
     public javax.swing.JLabel lblNomCl;
     public javax.swing.JLabel lblNomHe;
     private javax.swing.JLabel lblPhoto;
+    private javax.swing.JLabel lblPrix;
     // End of variables declaration//GEN-END:variables
 }

@@ -70,7 +70,7 @@ public class ReservationDao {
             
             while (rs.next()) {
                 Reservation re = new Reservation();
-                re.setId(rs.getInt("idClient"));
+                re.setId(rs.getInt("idReser"));
                 re.setDateArr(rs.getString("dateArr"));
                 re.setDateDep(rs.getString("dateDep"));
                 re.setIdClient(rs.getInt("idClient"));
@@ -89,6 +89,27 @@ public class ReservationDao {
         
         
         return list;
+        
+    }
+    
+    public void supprimer(Reservation re)
+    {
+        
+        
+        String sql  = "DELETE FROM reservation WHERE idReser = ? ";
+        
+        try {
+            con = cn.connnecterBD();
+            pst = con.prepareStatement(sql);
+            
+            
+            pst.setInt(1, re.getId());
+            pst.execute();
+                        
+        } catch (Exception e) 
+        {
+            e.printStackTrace();
+        }
         
     }
     

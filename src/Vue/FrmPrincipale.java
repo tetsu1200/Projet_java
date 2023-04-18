@@ -28,6 +28,7 @@ public class FrmPrincipale extends javax.swing.JFrame {
     FrmHebergementEmpl fme = new FrmHebergementEmpl();
     FrmAccueil fa = new FrmAccueil();
     FrmClient fc = new FrmClient();
+    FrmReservation fr = new FrmReservation();
     //FrmHebergement2 fh2 = new FrmHebergement2();
             
     
@@ -151,6 +152,11 @@ public class FrmPrincipale extends javax.swing.JFrame {
         btnReser.setForeground(new java.awt.Color(255, 255, 255));
         btnReser.setText("Mes reservations");
         btnReser.setBorder(null);
+        btnReser.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnReserActionPerformed(evt);
+            }
+        });
 
         btnParametre.setBackground(new java.awt.Color(87, 66, 157));
         btnParametre.setFont(new java.awt.Font("Square721 Cn BT", 0, 18)); // NOI18N
@@ -296,6 +302,28 @@ public class FrmPrincipale extends javax.swing.JFrame {
         dkp.add(fc);
         fc.setVisible(true);
     }//GEN-LAST:event_btnClientActionPerformed
+
+    private void btnReserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnReserActionPerformed
+        // TODO add your handling code here:
+        
+        if (UserManager.getVerif() == 0){
+            
+            
+            dkp.removeAll();
+            dkp.add(fr);
+            fr.setVisible(true);
+            fr.charger();
+            //fr.profilCl();
+        }
+        else if (UserManager.getVerif() == 1){
+            
+            /*fh.profilEm();
+            dkp.removeAll();
+            dkp.add(fme);
+            fme.setVisible(true);*/
+        }
+        
+    }//GEN-LAST:event_btnReserActionPerformed
 
     /**
      * @param args the command line arguments
