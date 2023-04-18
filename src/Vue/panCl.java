@@ -4,6 +4,9 @@
  */
 package Vue;
 
+import Model.Client;
+import Model.ClientDao;
+import Model.FrmModifClient;
 import Model.Hebergement;
 import Model.HebergementDao;
 import Model.UserManager;
@@ -19,12 +22,12 @@ import javax.swing.SwingUtilities;
  *
  * @author PROBOOK 450 I7
  */
-public class pan extends javax.swing.JPanel {
+public class panCl extends javax.swing.JPanel {
 
     /**
      * Creates new form pan
      */
-    public pan() { 
+    public panCl() { 
         initComponents();
         charger();
     }
@@ -42,26 +45,11 @@ public class pan extends javax.swing.JPanel {
     }
     
     public void charger(){
-        if (UserManager.getVerif() == 1) {
-            btnDelete.setVisible(true);
-            btnOffre.setVisible(false);
-            btnModif.setVisible(true);
-        }else if (UserManager.getVerif() == 0) {
-            btnDelete.setVisible(false);
-            btnOffre.setVisible(true);
-            btnModif.setVisible(false);
-        }
+        
     }
     
     
-    
-    
-    
-
-    
-    
-    
-
+ 
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -73,7 +61,6 @@ public class pan extends javax.swing.JPanel {
 
         lblNom = new javax.swing.JLabel();
         lblPhoto = new javax.swing.JLabel();
-        btnOffre = new javax.swing.JButton();
         lblId = new javax.swing.JLabel();
         btnDelete = new javax.swing.JButton();
         btnModif = new javax.swing.JButton();
@@ -86,16 +73,6 @@ public class pan extends javax.swing.JPanel {
         lblNom.setText("Nom hotel");
 
         lblPhoto.setText("jLabel2");
-
-        btnOffre.setBackground(new java.awt.Color(51, 51, 255));
-        btnOffre.setFont(new java.awt.Font("Calibri", 0, 18)); // NOI18N
-        btnOffre.setForeground(new java.awt.Color(255, 255, 255));
-        btnOffre.setText("Voir l'offre");
-        btnOffre.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnOffreActionPerformed(evt);
-            }
-        });
 
         lblId.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         lblId.setText("id");
@@ -126,21 +103,19 @@ public class pan extends javax.swing.JPanel {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addComponent(lblPhoto, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(lblNom, javax.swing.GroupLayout.PREFERRED_SIZE, 247, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(lblId, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(btnModif)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(btnDelete)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btnOffre)))
-                .addContainerGap())
+                        .addGap(14, 14, 14))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -152,7 +127,6 @@ public class pan extends javax.swing.JPanel {
                         .addComponent(lblId, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 83, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnOffre, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnDelete, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnModif, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
@@ -160,45 +134,27 @@ public class pan extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnOffreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnOffreActionPerformed
-        
-        // Récupérer le JDesktopPane du JFrame parent (FrmPrincipale)
-        JDesktopPane desktopPane = (JDesktopPane) SwingUtilities.getAncestorOfClass(JDesktopPane.class, this);
-
-        // Récupérer le JInternalFrame parent (FrmHebergement2)
-        JInternalFrame internalFrame = (JInternalFrame) SwingUtilities.getAncestorOfClass(JInternalFrame.class, this);
-
-        FrmView viewFrame = new FrmView(Integer.parseInt(lblId.getText()));
-        desktopPane.add(viewFrame);
-        viewFrame.setVisible(true);
-
-        // Supprimer l'ancien JInternalFrame (FrmHebergement2)
-        internalFrame.dispose();
-    }//GEN-LAST:event_btnOffreActionPerformed
-
     private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed
         
-        Hebergement he = new Hebergement();
-        HebergementDao hed = new HebergementDao();
-        List<Hebergement> list = new ArrayList<>();
+        Client cl = new Client();
+        ClientDao hed = new ClientDao();
+        List<Client> list = new ArrayList<>();
         
-        he = he.rechercherById(Integer.parseInt(lblId.getText()));
-        hed.supprimer(he);
+        cl = cl.rechercherById(Integer.parseInt(lblId.getText()));
+        hed.supprimer(cl);
     }//GEN-LAST:event_btnDeleteActionPerformed
 
     private void btnModifActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModifActionPerformed
-        Hebergement he = new Hebergement();
-        he = he.rechercherById(Integer.parseInt(lblId.getText()));
-        System.err.println("ID-----PAN"+Integer.parseInt(lblId.getText()) );
-        System.err.println("NOM-----PAN"+he.getId());
+        Client cl = new Client();
+        cl = cl.rechercherById(Integer.parseInt(lblId.getText()));
         // Récupérer le JDesktopPane du JFrame parent (FrmPrincipale)
         JDesktopPane desktopPane = (JDesktopPane) SwingUtilities.getAncestorOfClass(JDesktopPane.class, this);
 
         // Récupérer le JInternalFrame parent (FrmHebergement2)
         JInternalFrame internalFrame = (JInternalFrame) SwingUtilities.getAncestorOfClass(JInternalFrame.class, this);
-        FrmModifHeber fmh = new FrmModifHeber(he);
-        desktopPane.add(fmh);
-        fmh.setVisible(true);
+        FrmModifClient fmc = new FrmModifClient(cl);
+        desktopPane.add(fmc);
+        fmc.setVisible(true);
         
         // Supprimer l'ancien JInternalFrame (FrmHebergement2)
         internalFrame.dispose();
@@ -209,7 +165,6 @@ public class pan extends javax.swing.JPanel {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnDelete;
     private javax.swing.JButton btnModif;
-    private javax.swing.JButton btnOffre;
     private javax.swing.JLabel lblId;
     public javax.swing.JLabel lblNom;
     private javax.swing.JLabel lblPhoto;

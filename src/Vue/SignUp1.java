@@ -174,7 +174,7 @@ public class SignUp1 extends javax.swing.JFrame {
         btnEnregistrer.setBackground(new java.awt.Color(117, 42, 181));
         btnEnregistrer.setFont(new java.awt.Font("Bahnschrift", 0, 18)); // NOI18N
         btnEnregistrer.setForeground(new java.awt.Color(255, 255, 255));
-        btnEnregistrer.setText("LOGIN");
+        btnEnregistrer.setText("SIGN UP");
         btnEnregistrer.setName("btnLogin"); // NOI18N
         btnEnregistrer.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {

@@ -20,6 +20,46 @@ public class HebergementDao {
     ResultSet rs;
     
     
+    
+    public boolean  enregistrer(Hebergement he)
+    {
+        String sql = "INSERT INTO hebergement(nomHeber, adresseHeber, photoHeber, descriptionHeber, avisHeber, "
+                + "categorieHeber, nbrChambre, nbrEtoile, tarifHeber, ville) values " + "(?,?,?,?,?,?,?,?,?,?)";
+                                        
+        try {
+            con = cn.connnecterBD();
+            pst = con.prepareStatement(sql);
+            pst.setString(1, he.getNom());
+            pst.setString(2, he.getAdresse());
+            pst.setString(3, he.getPhoto());
+            pst.setString(4, he.getDescription());
+            pst.setString(5, he.getAvis());
+            pst.setString(6, he.getCategorie());
+            pst.setInt(7, he.getNbrChambre());
+            pst.setInt(8, he.getNbrEtoile());
+            pst.setInt(9, he.getTarif());
+            pst.setString(10, he.getVille());
+            pst.execute();
+            
+            return true;
+            
+        } catch (Exception e) 
+        {
+            e.printStackTrace();
+            return false;
+            
+        }finally{
+            try 
+            {
+                con.close();
+            } catch (Exception e) 
+            {
+                e.getStackTrace();
+            }
+        }
+    }
+    
+    
     public List recuperer()
     {
         List<Hebergement> list = new ArrayList<>();
@@ -88,6 +128,70 @@ public class HebergementDao {
         
         return list;
         
+    }
+    
+    
+    public void supprimer(Hebergement he)
+    {
+        List<Hebergement> list = new ArrayList<>();
+        
+        String sql  = "DELETE FROM hebergement WHERE idHeber = ? ";
+        
+        try {
+            con = cn.connnecterBD();
+            pst = con.prepareStatement(sql);
+            
+            
+            pst.setInt(1, he.getId());
+            pst.execute();
+                        
+        } catch (Exception e) 
+        {
+            e.printStackTrace();
+        }
+        
+    }
+    
+    
+    public boolean  Modifier(Hebergement he)
+    {
+        String sql = "UPDATE hebergement SET nomHeber=?, adresseHeber=?, photoHeber=?, descriptionHeber=?, avisHeber=?, "
+            + "categorieHeber=?, nbrChambre=?, nbrEtoile=?, tarifHeber=?, ville=? WHERE idHeber=?";
+                                        
+        try {
+            con = cn.connnecterBD();
+            pst = con.prepareStatement(sql);
+            
+            pst.setString(1, he.getNom());
+            System.err.println(he.getId());
+            pst.setString(2, he.getAdresse());
+            pst.setString(3, he.getPhoto());
+            pst.setString(4, he.getDescription());
+            pst.setString(5, he.getAvis());
+            pst.setString(6, he.getCategorie());
+            pst.setInt(7, he.getNbrChambre());
+            pst.setInt(8, he.getNbrEtoile());
+            pst.setInt(9, he.getTarif());
+            pst.setString(10, he.getVille());
+            pst.setInt(11, he.getId());
+            pst.executeUpdate();
+            
+            return true;
+            
+        } catch (Exception e) 
+        {
+            e.printStackTrace();
+            return false;
+            
+        }finally{
+            try 
+            {
+                con.close();
+            } catch (Exception e) 
+            {
+                e.getStackTrace();
+            }
+        }
     }
     
 }

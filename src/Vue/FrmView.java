@@ -23,7 +23,7 @@ import javax.swing.ImageIcon;
  */
 public class FrmView extends javax.swing.JInternalFrame {
     
-    String nomH;
+    int idH;
     ImageIcon photo;
     Reservation re = new Reservation();
     Hebergement h = new Hebergement();
@@ -32,14 +32,14 @@ public class FrmView extends javax.swing.JInternalFrame {
     /**
      * Creates new form FrmView
      */
-    public FrmView(String nomH) {
+    public FrmView(int idH) {
         initComponents();
-        this.nomH = nomH;
+        this.idH = idH;
         try {
             this.setMaximum(true);
             //this.setExtendedState(MAXIMIZED_BOTH);
         } catch (PropertyVetoException ex) {
-            Logger.getLogger(FrmAcceuil.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(FrmAccueil.class.getName()).log(Level.SEVERE, null, ex);
         }
         
         h = charger();
@@ -55,7 +55,7 @@ public class FrmView extends javax.swing.JInternalFrame {
         Hebergement he = new Hebergement();
         
         
-        he = he.rechercherN(nomH);
+        he = he.rechercherById(idH);
         
         // récupérer les informations de l'objet Hebergement actuel
             //int prix = he.getTarif();
@@ -289,7 +289,7 @@ public class FrmView extends javax.swing.JInternalFrame {
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(175, 175, 175)
                         .addComponent(panReser, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(37, Short.MAX_VALUE))
+                        .addContainerGap(42, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)

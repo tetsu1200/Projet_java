@@ -12,7 +12,7 @@ public class UserManager {
     
     private static String email;
     private static String password;
-    private static int verif;
+    private static int verif = -2;
 
     public static String getEmail() {
         return email;

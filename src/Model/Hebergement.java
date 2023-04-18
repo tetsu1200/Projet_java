@@ -32,6 +32,21 @@ public class Hebergement {
     public Hebergement() {
     }
 
+    public Hebergement(int nbrChambre, int nbrEtoile, int tarif, String nom, String adresse, String description, String avis, String categorie, String ville) {
+        this.nbrChambre = nbrChambre;
+        this.nbrEtoile = nbrEtoile;
+        this.tarif = tarif;
+        this.nom = nom;
+        this.adresse = adresse;
+        //this.photo = photo;
+        this.description = description;
+        this.avis = avis;
+        this.categorie = categorie;
+        this.ville = ville;
+    }
+    
+    
+
     public int getId() {
         return id;
     }
@@ -226,14 +241,35 @@ public class Hebergement {
                 
                 }           
                 
-            }else{
-               
-                
-            }
-            
-            
+            }          
         } catch (Exception e) {
-            //e.getStackTrace();
+            e.printStackTrace();
+        }
+        
+        return list.get(j);
+    }
+    
+    
+    public Hebergement rechercherById(int id){
+        
+        List<Hebergement> list = new ArrayList<>();
+        int j = -2;
+        
+        try {
+            list = hed.recuperer();
+            
+            if (!list.isEmpty()) {
+                
+                for (int i = 0; i < list.size(); i++) 
+                {
+                    if (list.get(i).getId() ==id) 
+                    {
+                        j=i;
+                       
+                    }      
+                }              
+            }          
+        } catch (Exception e) {
             e.printStackTrace();
         }
         
@@ -246,10 +282,6 @@ public class Hebergement {
         
         //List<Hebergement> list = new ArrayList<>();
         List<Hebergement> newList = new ArrayList<>();
-        
-        
-        
-        
         try {
             //list = hed.recuperer();
             
@@ -287,7 +319,6 @@ public class Hebergement {
         }
         
         return newList;
-        
     }
     
         

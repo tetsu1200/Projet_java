@@ -4,6 +4,7 @@
  */
 package Vue;
 
+import Model.FrmClient;
 import Model.Hebergement;
 import Model.UserManager;
 import java.awt.Color;
@@ -22,8 +23,11 @@ public class FrmPrincipale extends javax.swing.JFrame {
     private static String mailC;
     private static String mdpC;
     int i = 0;
-    FrmAcceuil f=new FrmAcceuil();
+    FrmAccueil f=new FrmAccueil();
     FrmHebergement fh=new FrmHebergement();
+    FrmHebergementEmpl fme = new FrmHebergementEmpl();
+    FrmAccueil fa = new FrmAccueil();
+    FrmClient fc = new FrmClient();
     //FrmHebergement2 fh2 = new FrmHebergement2();
             
     
@@ -33,7 +37,8 @@ public class FrmPrincipale extends javax.swing.JFrame {
      */
     public FrmPrincipale() {
         initComponents();
-        this.setExtendedState(MAXIMIZED_BOTH);   
+        this.setExtendedState(MAXIMIZED_BOTH); 
+        System.out.println("FrmPrincipale OK");
 
     } 
     
@@ -47,6 +52,30 @@ public class FrmPrincipale extends javax.swing.JFrame {
         FrmHebergement2 frmHebergement2 = new FrmHebergement2(list);
         frmHebergement2.setVisible(true);
         dkp.add(frmHebergement2);
+    }
+    
+    public void goToFrmHebergementEmplToAjout() {
+        
+    // Supprime le FrmHebergement
+        dkp.remove(fme);
+        fme.dispose();
+
+    // Crée et affiche le FrmHebergement2
+        FrmAjoutHebr fma = new FrmAjoutHebr();
+        fma.setVisible(true);
+        dkp.add(fma);
+    }
+    
+    public void goToFrmClientToAjout(){
+        
+        // Supprime le FrmHebergement
+        dkp.remove(fc);
+        fc.dispose();
+
+        // Crée et affiche le FrmHebergement2
+        FrmAjoutClient fac = new FrmAjoutClient();
+        fac.setVisible(true);
+        dkp.add(fac);
     }
     
 
@@ -68,6 +97,7 @@ public class FrmPrincipale extends javax.swing.JFrame {
         btnParametre = new javax.swing.JButton();
         btnLogOut = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
+        btnClient = new javax.swing.JButton();
         dkp = new javax.swing.JDesktopPane();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -96,7 +126,7 @@ public class FrmPrincipale extends javax.swing.JFrame {
         btnHeber.setBackground(new java.awt.Color(87, 66, 157));
         btnHeber.setFont(new java.awt.Font("Square721 Cn BT", 0, 18)); // NOI18N
         btnHeber.setForeground(new java.awt.Color(255, 255, 255));
-        btnHeber.setText("Hebergement");
+        btnHeber.setText("Hebergements");
         btnHeber.setBorder(null);
         btnHeber.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -107,7 +137,7 @@ public class FrmPrincipale extends javax.swing.JFrame {
         btnReser.setBackground(new java.awt.Color(87, 66, 157));
         btnReser.setFont(new java.awt.Font("Square721 Cn BT", 0, 18)); // NOI18N
         btnReser.setForeground(new java.awt.Color(255, 255, 255));
-        btnReser.setText("Mes reservation");
+        btnReser.setText("Mes reservations");
         btnReser.setBorder(null);
 
         btnParametre.setBackground(new java.awt.Color(87, 66, 157));
@@ -124,6 +154,17 @@ public class FrmPrincipale extends javax.swing.JFrame {
 
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Image/Logo_Triangle.png"))); // NOI18N
 
+        btnClient.setBackground(new java.awt.Color(87, 66, 157));
+        btnClient.setFont(new java.awt.Font("Square721 Cn BT", 0, 18)); // NOI18N
+        btnClient.setForeground(new java.awt.Color(255, 255, 255));
+        btnClient.setText("Clients");
+        btnClient.setBorder(null);
+        btnClient.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnClientActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
@@ -139,6 +180,7 @@ public class FrmPrincipale extends javax.swing.JFrame {
             .addComponent(btnReser, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(btnParametre, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(btnLogOut, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(btnClient, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -153,7 +195,9 @@ public class FrmPrincipale extends javax.swing.JFrame {
                 .addComponent(btnHeber, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnReser, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 211, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btnClient, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 151, Short.MAX_VALUE)
                 .addComponent(btnParametre, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(btnLogOut, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -217,21 +261,29 @@ public class FrmPrincipale extends javax.swing.JFrame {
     private void btnHeberActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHeberActionPerformed
         // TODO add your handling code here:
         
-        dkp.removeAll();
         
-        dkp.add(fh);
-        fh.setVisible(true);
-        if (UserManager.getVerif() == 0) 
+        if (UserManager.getVerif() == 0){
+            
+            
+            dkp.removeAll();
+            dkp.add(fh);
+            fh.setVisible(true);
             fh.profilCl();
-        else if (UserManager.getVerif() == 1) 
+        }
+        else if (UserManager.getVerif() == 1){
+            
             fh.profilEm();
-        
-        i =1;
-       
-    
-           
-       
+            dkp.removeAll();
+            dkp.add(fme);
+            fme.setVisible(true);
+        }
     }//GEN-LAST:event_btnHeberActionPerformed
+
+    private void btnClientActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnClientActionPerformed
+        dkp.removeAll();
+        dkp.add(fc);
+        fc.setVisible(true);
+    }//GEN-LAST:event_btnClientActionPerformed
 
     /**
      * @param args the command line arguments
@@ -270,6 +322,7 @@ public class FrmPrincipale extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAcceuil;
+    private javax.swing.JButton btnClient;
     private javax.swing.JButton btnHeber;
     private javax.swing.JButton btnLogOut;
     private javax.swing.JButton btnParametre;

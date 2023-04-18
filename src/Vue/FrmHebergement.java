@@ -45,7 +45,7 @@ public class FrmHebergement extends javax.swing.JInternalFrame {
             this.setMaximum(true);
             //this.setExtendedState(MAXIMIZED_BOTH);
         } catch (PropertyVetoException ex) {
-            Logger.getLogger(FrmAcceuil.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(FrmAccueil.class.getName()).log(Level.SEVERE, null, ex);
         }
         Cbo();
     }
@@ -251,7 +251,22 @@ public class FrmHebergement extends javax.swing.JInternalFrame {
         //Pour recuperer le parent de FrmHebergement        
         FrmPrincipale frmPrincipale = (FrmPrincipale) SwingUtilities.getWindowAncestor(FrmHebergement.this);
         //Supprimer FrmHebergement et afficher FrmHebergement2
-        frmPrincipale.goToFrmHebergementToHebergement2(Recherche());
+        
+        
+        if (txtPrixInitial.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Champ prix initial vide", "Error", 
+                    JOptionPane.ERROR_MESSAGE);
+        }else if (txtPrixFinal.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Champ prix final vide", "Error", 
+                    JOptionPane.ERROR_MESSAGE);
+        }else if (!txtPrixInitial.getText().matches("\\d+") || !txtPrixFinal.getText().matches("\\d+")) {
+            JOptionPane.showMessageDialog(this, "Entrer des chiffres", "Error", 
+                    JOptionPane.ERROR_MESSAGE);
+        }
+        else{
+            frmPrincipale.goToFrmHebergementToHebergement2(Recherche());
+        }
+        
         
     }//GEN-LAST:event_btnRechercherActionPerformed
 

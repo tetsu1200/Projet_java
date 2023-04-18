@@ -111,4 +111,61 @@ public class ClientDao
         
     }
     
+    public void supprimer(Client cl)
+    {
+        List<Client> list = new ArrayList<>();
+        
+        String sql  = "DELETE FROM clients WHERE idClient = ? ";
+        
+        try {
+            con = cn.connnecterBD();
+            pst = con.prepareStatement(sql);
+            
+            
+            pst.setInt(1, cl.getId());
+            pst.execute();
+                        
+        } catch (Exception e) 
+        {
+            e.printStackTrace();
+        }
+        
+    }
+    
+    public boolean modifierClient(Client client) {
+    String sql = "UPDATE clients SET nomClient=?, telClient=?, mailClient=?, ageClient=?, situationClient=?, typeRegulier=?, mdpClient=?, photo=? WHERE idClient=?";
+
+    try {
+        con = cn.connnecterBD();
+        pst = con.prepareStatement(sql);
+
+        pst.setString(1, client.getNom());
+        pst.setString(2, client.getTel());
+        pst.setString(3, client.getMail());
+        pst.setInt(4, client.getAge());
+        System.err.println("Clien------"+ client.getNom());
+        pst.setString(5, client.getSituation());
+        pst.setBoolean(6, client.isTypeRegulier());
+        pst.setString(7, client.getMdp());
+        pst.setString(8, client.getPhoto());
+        pst.setInt(9, client.getId());
+
+        pst.executeUpdate();
+
+        return true;
+
+    } catch (Exception e) {
+        e.printStackTrace();
+        return false;
+
+    } finally {
+        try {
+            con.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+}
+
+    
 }

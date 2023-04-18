@@ -25,7 +25,7 @@ import javax.swing.SwingUtilities;
  *
  * @author PROBOOK 450 I7
  */
-public class FrmAcceuil extends javax.swing.JInternalFrame {
+public class FrmAccueil extends javax.swing.JInternalFrame {
 
     ImageIcon photo;
     Hebergement he = new Hebergement();
@@ -40,14 +40,14 @@ public class FrmAcceuil extends javax.swing.JInternalFrame {
     /**
      * Creates new form NewJInternalFrame
      */
-    public FrmAcceuil() {
+    public FrmAccueil() {
         initComponents();
         
         try {
             this.setMaximum(true);
             //this.setExtendedState(MAXIMIZED_BOTH);
         } catch (PropertyVetoException ex) {
-            Logger.getLogger(FrmAcceuil.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(FrmAccueil.class.getName()).log(Level.SEVERE, null, ex);
         }
         charger();
         /*if (UserManager.getVerif() == 0) {
@@ -74,7 +74,7 @@ public class FrmAcceuil extends javax.swing.JInternalFrame {
     public void charger()
     {
         list = he.topHebergement();
-        modP(0,485,294,lblPrincipale,lblPrincipaleNom,lblPrincipaleAdresse,lblPricipaleId);
+        modP(0,485,294,lblPrincipale,lblPrincipaleNom,lblPrincipaleAdresse,lblPrincipaleId);
         modP(1, 209, 215, lbl2, lbl2Nom, lbl2Adresse,lbl2Id);
         modP(2, 209, 215, lbl3, lbl3Nom, lbl3Adresse,lbl3Id);
         
@@ -137,7 +137,7 @@ public class FrmAcceuil extends javax.swing.JInternalFrame {
         jPanel2 = new javax.swing.JPanel();
         lblNom = new javax.swing.JLabel();
         lblPhoto = new javax.swing.JLabel();
-        lblPricipaleId = new javax.swing.JLabel();
+        lblPrincipaleId = new javax.swing.JLabel();
         lbl3Id = new javax.swing.JLabel();
         lbl2Id = new javax.swing.JLabel();
 
@@ -217,8 +217,8 @@ public class FrmAcceuil extends javax.swing.JInternalFrame {
                 .addContainerGap())
         );
 
-        lblPricipaleId.setFont(new java.awt.Font("Calibri", 1, 18)); // NOI18N
-        lblPricipaleId.setText("id");
+        lblPrincipaleId.setFont(new java.awt.Font("Calibri", 1, 18)); // NOI18N
+        lblPrincipaleId.setText("id");
 
         lbl3Id.setFont(new java.awt.Font("Calibri", 1, 18)); // NOI18N
         lbl3Id.setText("id");
@@ -257,7 +257,7 @@ public class FrmAcceuil extends javax.swing.JInternalFrame {
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addComponent(lblPrincipaleNom, javax.swing.GroupLayout.PREFERRED_SIZE, 286, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(51, 51, 51)
-                                .addComponent(lblPricipaleId, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addComponent(lblPrincipaleId, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -275,9 +275,8 @@ public class FrmAcceuil extends javax.swing.JInternalFrame {
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(lblPrincipaleNom, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(lblPricipaleId, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(lblPrincipaleId, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addGap(1, 1, 1)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(lblPrincipaleAdresse))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addContainerGap()
@@ -323,7 +322,7 @@ public class FrmAcceuil extends javax.swing.JInternalFrame {
         // Récupérer le JInternalFrame parent (FrmHebergement2)
         JInternalFrame internalFrame = (JInternalFrame) SwingUtilities.getAncestorOfClass(JInternalFrame.class, this);
 
-        FrmView fv = new FrmView(lblPrincipaleNom.getText());
+        FrmView fv = new FrmView(Integer.parseInt(lblPrincipaleId.getText()));
         desktopPane.add(fv);
         fv.setVisible(true);
 
@@ -338,7 +337,7 @@ public class FrmAcceuil extends javax.swing.JInternalFrame {
         // Récupérer le JInternalFrame parent (FrmHebergement2)
         JInternalFrame internalFrame = (JInternalFrame) SwingUtilities.getAncestorOfClass(JInternalFrame.class, this);
 
-        FrmView fv = new FrmView(lbl2Nom.getText());
+        FrmView fv = new FrmView(Integer.parseInt(lbl2Id.getText()));
         desktopPane.add(fv);
         fv.setVisible(true);
 
@@ -353,7 +352,7 @@ public class FrmAcceuil extends javax.swing.JInternalFrame {
         // Récupérer le JInternalFrame parent (FrmHebergement2)
         JInternalFrame internalFrame = (JInternalFrame) SwingUtilities.getAncestorOfClass(JInternalFrame.class, this);
 
-        FrmView fv = new FrmView(lbl3Nom.getText());
+        FrmView fv = new FrmView(Integer.parseInt(lbl3Id.getText()));
         desktopPane.add(fv);
         fv.setVisible(true);
 
@@ -375,9 +374,9 @@ public class FrmAcceuil extends javax.swing.JInternalFrame {
     private javax.swing.JLabel lbl3Nom;
     private javax.swing.JLabel lblNom;
     private javax.swing.JLabel lblPhoto;
-    private javax.swing.JLabel lblPricipaleId;
     private javax.swing.JLabel lblPrincipale;
     private javax.swing.JLabel lblPrincipaleAdresse;
+    private javax.swing.JLabel lblPrincipaleId;
     private javax.swing.JLabel lblPrincipaleNom;
     // End of variables declaration//GEN-END:variables
 }

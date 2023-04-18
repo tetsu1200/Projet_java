@@ -131,6 +131,32 @@ public class Client
         return null;
     }
     
+    public Client rechercherById(int id){
+        
+        List<Client> list = new ArrayList<>();
+        int j = -2;
+        
+        try {
+            list = cld.recuperer();
+            
+            if (!list.isEmpty()) {
+                
+                for (int i = 0; i < list.size(); i++) 
+                {
+                    if (list.get(i).getId() ==id) 
+                    {
+                        j=i;
+                       
+                    }      
+                }              
+            }          
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        
+        return list.get(j);
+    }
+    
     
     
     

@@ -83,7 +83,7 @@
                               <Group type="102" alignment="0" attributes="0">
                                   <Component id="lblPrincipaleNom" min="-2" pref="286" max="-2" attributes="0"/>
                                   <EmptySpace min="-2" pref="51" max="-2" attributes="0"/>
-                                  <Component id="lblPricipaleId" min="-2" pref="104" max="-2" attributes="0"/>
+                                  <Component id="lblPrincipaleId" min="-2" pref="104" max="-2" attributes="0"/>
                               </Group>
                           </Group>
                           <EmptySpace max="32767" attributes="0"/>
@@ -107,11 +107,10 @@
                           <Group type="103" groupAlignment="0" max="-2" attributes="0">
                               <Component id="lblPrincipaleNom" min="-2" pref="26" max="-2" attributes="0"/>
                               <Group type="102" attributes="0">
-                                  <Component id="lblPricipaleId" max="32767" attributes="0"/>
+                                  <Component id="lblPrincipaleId" max="32767" attributes="0"/>
                                   <EmptySpace min="1" pref="1" max="-2" attributes="0"/>
                               </Group>
                           </Group>
-                          <EmptySpace max="-2" attributes="0"/>
                           <Component id="lblPrincipaleAdresse" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <Group type="102" alignment="0" attributes="0">
@@ -295,7 +294,7 @@
         </Container>
         <Component class="javax.swing.JLabel" name="lblPhoto">
         </Component>
-        <Component class="javax.swing.JLabel" name="lblPricipaleId">
+        <Component class="javax.swing.JLabel" name="lblPrincipaleId">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Calibri" size="18" style="1"/>

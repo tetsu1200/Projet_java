@@ -290,18 +290,20 @@ public class Login extends javax.swing.JFrame {
                     JOptionPane.showMessageDialog(this, "Compte invalide","Message", JOptionPane.INFORMATION_MESSAGE);
                 }else if (rs1.next()) {
                     Login.super.dispose();
+                    UserManager.setVerif(0);
                     FrmPrincipale fp = new FrmPrincipale();
                     UserManager.setEmail(mail);
                     UserManager.setPassword(mdp);
-                    UserManager.setVerif(0);
+                    
                     fp.setVisible(true);
                     this.hide();
                 }else if(rs2.next()){
                     Login.super.dispose();
+                    UserManager.setVerif(1);
                     FrmPrincipale fp = new FrmPrincipale();
                     UserManager.setEmail(mail);
                     UserManager.setPassword(mdp);
-                    UserManager.setVerif(1);
+                    System.out.println("Login OK");
                     fp.setVisible(true);
                     this.hide();
                 }

@@ -47,7 +47,7 @@ public class FrmHebergement2 extends javax.swing.JInternalFrame {
             this.setMaximum(true);
             //this.setExtendedState(MAXIMIZED_BOTH);
         } catch (PropertyVetoException ex) {
-            Logger.getLogger(FrmAcceuil.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(FrmAccueil.class.getName()).log(Level.SEVERE, null, ex);
         }
         //fhe.profil();
     }
